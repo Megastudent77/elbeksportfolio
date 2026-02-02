@@ -130,19 +130,35 @@
             box-shadow: 10px 10px 30px rgba(0,0,0,0.5);
         }
         .book-front {
-            position: absolute; width: 100%; height: 100%; background: #222;
+            position: absolute; width: 100%; height: 100%;
             transform: translateZ(15px); border: 1px solid var(--gold-glow);
             display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 10px;
-            background: linear-gradient(135deg, #1a1a1a 0%, #0a0a0a 100%);
+            /* Gradient set in HTML inline for variety */
         }
         .book-spine {
-            position: absolute; width: 30px; height: 100%; background: var(--gold);
+            position: absolute; width: 30px; height: 100%;
             transform: rotateY(-90deg) translateZ(-15px);
             display: flex; align-items: center; justify-content: center;
         }
-        .spine-text { writing-mode: vertical-rl; transform: rotate(180deg); color: #000; font-family: 'Cinzel'; font-size: 0.7rem; letter-spacing: 2px; }
-        .book-title { font-family: 'Cinzel'; color: var(--gold); font-size: 0.9rem; margin-bottom: 5px; }
-        .book-author { font-family: 'Lora'; font-size: 0.7rem; color: var(--text-secondary); font-style: italic; }
+        .spine-text { writing-mode: vertical-rl; transform: rotate(180deg); color: #fff; font-family: 'Cinzel'; font-size: 0.6rem; letter-spacing: 2px; opacity: 0.8; }
+        .book-title { font-family: 'Cinzel'; color: #fff; font-size: 0.9rem; margin-bottom: 5px; text-shadow: 0 2px 5px rgba(0,0,0,0.8); }
+        .book-author { font-family: 'Lora'; font-size: 0.7rem; color: #ccc; font-style: italic; }
+
+        /* --- PROJECT HERO (RESTORED VISUALS) --- */
+        .project-hero { background: var(--surface); border: 1px solid var(--gold-glow); display: grid; grid-template-columns: 1.2fr 1fr; overflow: hidden; margin-bottom: 50px; }
+        .project-content { padding: 45px; }
+        .project-visual { 
+            background: #000; position: relative; display: flex; align-items: center; justify-content: center; 
+            border-left: 1px solid var(--gold-glow); overflow: hidden;
+        }
+        .project-visual img { width: 100%; height: 100%; object-fit: cover; opacity: 0.6; transition: 0.5s; }
+        .project-hero:hover .project-visual img { opacity: 0.9; transform: scale(1.05); }
+        .scan-line {
+            position: absolute; width: 100%; height: 2px; background: var(--gold);
+            top: 0; opacity: 0.8; box-shadow: 0 0 15px var(--gold);
+            animation: scan 3s linear infinite; z-index: 10;
+        }
+        @keyframes scan { 0% {top: 0;} 100% {top: 100%;} }
 
         /* --- TIMELINE --- */
         .timeline { position: relative; border-left: 2px solid var(--gold-glow); margin-left: 20px; padding-left: 30px; }
@@ -165,7 +181,7 @@
         .soft-card:hover { transform: translateY(-5px); border-color: var(--gold); background: rgba(197, 160, 89, 0.05); }
         .soft-card:hover i { color: var(--gold); }
 
-        /* --- CERTIFICATES & PORTFOLIO --- */
+        /* --- CERTIFICATES --- */
         .cert-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 20px; }
         .cert-img-container { width: 100%; height: 150px; background: #000; overflow: hidden; margin-bottom: 10px; border: 1px solid var(--gold-glow); }
         .cert-img-container img { width: 100%; height: 100%; object-fit: cover; opacity: 0.7; transition: 0.5s; }
@@ -188,7 +204,7 @@
             .grid-split, .project-hero { grid-template-columns: 1fr; } 
             section { padding: 120px 5% 40px 5%; }
             nav { padding: 15px 5%; }
-            .nav-menu { display: none; } /* Mobile menu hiding for simplicity */
+            .nav-menu { display: none; }
             h1 { font-size: 3rem !important; }
         }
     </style>
@@ -307,38 +323,29 @@
             <div class="library-shelf rise d4">
                 <div class="book-container">
                     <div class="book">
-                        <div class="book-front">
-                            <span class="book-title">Atomic<br>Habits</span>
-                            <span class="book-author">James Clear</span>
+                        <div class="book-front" style="background: linear-gradient(135deg, #100b21 0%, #2a1a4a 100%);">
+                            <span class="book-title">One Day in<br>Galaxy</span>
+                            <span class="book-author">Sci-Fi Classic</span>
                         </div>
-                        <div class="book-spine"><span class="spine-text">Clear</span></div>
+                        <div class="book-spine" style="background: #4b367c;"><span class="spine-text">Galaxy</span></div>
                     </div>
                 </div>
                 <div class="book-container">
                     <div class="book">
-                        <div class="book-front">
-                            <span class="book-title">Brief History<br>of Time</span>
-                            <span class="book-author">S. Hawking</span>
+                        <div class="book-front" style="background: linear-gradient(135deg, #2b1d0e 0%, #5c401f 100%);">
+                            <span class="book-title">Ikki Eshik<br>Orasi</span>
+                            <span class="book-author">O'. Hoshimov</span>
                         </div>
-                        <div class="book-spine"><span class="spine-text">Hawking</span></div>
+                        <div class="book-spine" style="background: #8c602e;"><span class="spine-text">Hoshimov</span></div>
                     </div>
                 </div>
                 <div class="book-container">
                     <div class="book">
-                        <div class="book-front">
-                            <span class="book-title">Clean<br>Code</span>
-                            <span class="book-author">Robert Martin</span>
+                        <div class="book-front" style="background: linear-gradient(135deg, #0e1a2b 0%, #1f405c 100%);">
+                            <span class="book-title">Asirga<br>Tatigulik Kun</span>
+                            <span class="book-author">Ch. Aitmatov</span>
                         </div>
-                        <div class="book-spine"><span class="spine-text">Martin</span></div>
-                    </div>
-                </div>
-                <div class="book-container">
-                    <div class="book">
-                        <div class="book-front">
-                            <span class="book-title">Steve<br>Jobs</span>
-                            <span class="book-author">Isaacson</span>
-                        </div>
-                        <div class="book-spine"><span class="spine-text">Isaacson</span></div>
+                        <div class="book-spine" style="background: #2e5c8c;"><span class="spine-text">Aitmatov</span></div>
                     </div>
                 </div>
             </div>
@@ -363,20 +370,21 @@
             <h2 class="rise d1">Masterpieces</h2>
             <div class="gold-divider rise d2"></div>
             
-            <div class="card rise d3" style="display: grid; grid-template-columns: 1.5fr 1fr; gap: 30px; margin-bottom: 50px;">
-                <div>
-                    <span style="color:var(--gold); font-family: 'Cinzel'; font-size: 0.8rem;">FEATURED PROJECT</span>
+            <div class="project-hero rise d3">
+                <div class="project-content">
+                    <p style="color: var(--gold); font-family: 'Cinzel';">01. Major Project</p>
                     <h3 style="font-size: 2rem; margin: 10px 0;">EcoUZ-GPT</h3>
-                    <p style="color: var(--text-secondary); margin-bottom: 20px;">
-                        An Urban Resilience Command Center powered by Gemini 2.5. It generates thermodynamic urban cooling plans for Uzbek cities in under 3 minutes, achieving a simulated 35.4% energy reduction.
+                    <p style="color: var(--text-secondary); line-height: 1.8;">
+                        The Urban Resilience Command Center. Uses Gemini 2.5 to generate thermodynamic urban cooling plans in less than 3 minutes.
                     </p>
-                    <div style="display: flex; gap: 10px;">
-                        <span style="padding: 5px 15px; border: 1px solid var(--grid-line); font-size: 0.8rem;">Python</span>
-                        <span style="padding: 5px 15px; border: 1px solid var(--grid-line); font-size: 0.8rem;">AI</span>
-                    </div>
+                    <ul style="margin-top: 20px; list-style: none; color: var(--gold); font-size: 0.85rem;">
+                        <li>• 35.4% Energy Reduction</li>
+                        <li>• 99% Faster Planning</li>
+                    </ul>
                 </div>
-                <div style="background: #000; display: flex; align-items: center; justify-content: center; border: 1px solid var(--gold-glow);">
-                    <img src="Elbek.png" alt="EcoUZ Project" style="width: 100%; opacity: 0.8;">
+                <div class="project-visual">
+                    <div class="scan-line"></div>
+                    <img src="Elbek.png" alt="EcoUZ-GPT Project">
                 </div>
             </div>
 
@@ -390,6 +398,8 @@
                 <div class="card rise d2"><div class="cert-img-container"><img src="photo_2026-01-19_18-22-07.jpg" loading="lazy"></div><p style="font-size:0.8rem; color:var(--text-secondary);">Fastest Coder</p></div>
                 <div class="card rise d3"><div class="cert-img-container"><img src="photo_2026-01-19_18-22-11.jpg" loading="lazy"></div><p style="font-size:0.8rem; color:var(--text-secondary);">Swimming Silver</p></div>
                 <div class="card rise d4"><div class="cert-img-container"><img src="photo_2026-01-19_18-22-14.jpg" loading="lazy"></div><p style="font-size:0.8rem; color:var(--text-secondary);">Team Swimming</p></div>
+                <div class="card rise d1"><div class="cert-img-container"><img src="photo_2026-01-19_18-22-17.jpg" loading="lazy"></div><p style="font-size:0.8rem; color:var(--text-secondary);">Parent Letter</p></div>
+                <div class="card rise d2"><div class="cert-img-container"><img src="Elbek.png" loading="lazy"></div><p style="font-size:0.8rem; color:var(--text-secondary);">General Achievement</p></div>
             </div>
         </section>
 
