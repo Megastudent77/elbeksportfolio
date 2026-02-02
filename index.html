@@ -11,7 +11,6 @@
 
     <style>
         :root {
-            /* REVERTED TO ORIGINAL BLACK THEME */
             --bg-deep: #050506;
             --surface: rgba(14, 14, 16, 0.8);
             --gold: #c5a059;
@@ -145,48 +144,14 @@
         .cert-img-container img { width: 100%; height: 100%; object-fit: cover; opacity: 0.8; transition: 0.3s; }
         .card:hover img { opacity: 1; transform: scale(1.05); }
 
-        /* --- NEW STYLES FOR ADMIN ADD BLOG --- */
-        .admin-controls {
-            margin-bottom: 30px;
-            text-align: center;
-            border-bottom: 1px solid var(--grid-line);
-            padding-bottom: 20px;
-        }
-        .ea-btn {
-            background: transparent;
-            border: 1px solid var(--gold);
-            color: var(--gold);
-            padding: 10px 20px;
-            font-family: 'Cinzel';
-            cursor: pointer;
-            transition: 0.3s;
-            margin: 5px;
-        }
+        .admin-controls { margin-bottom: 30px; text-align: center; border-bottom: 1px solid var(--grid-line); padding-bottom: 20px; }
+        .ea-btn { background: transparent; border: 1px solid var(--gold); color: var(--gold); padding: 10px 20px; font-family: 'Cinzel'; cursor: pointer; transition: 0.3s; margin: 5px; }
         .ea-btn:hover { background: var(--gold); color: #000; }
 
-        /* The hidden form */
-        #add-blog-modal {
-            display: none; /* Hidden by default */
-            background: var(--surface);
-            border: 1px solid var(--gold);
-            padding: 20px;
-            max-width: 500px;
-            margin: 0 auto 30px auto;
-            text-align: left;
-        }
-        #add-blog-modal input, #add-blog-modal textarea {
-            width: 100%;
-            background: #000;
-            border: 1px solid var(--gold-glow);
-            color: #fff;
-            padding: 10px;
-            margin-bottom: 10px;
-            font-family: 'Inter', sans-serif;
-        }
+        #add-blog-modal { display: none; background: var(--surface); border: 1px solid var(--gold); padding: 20px; max-width: 500px; margin: 0 auto 30px auto; text-align: left; }
+        #add-blog-modal input, #add-blog-modal textarea { width: 100%; background: #000; border: 1px solid var(--gold-glow); color: #fff; padding: 10px; margin-bottom: 10px; font-family: 'Inter', sans-serif; }
         .blog-link-wrapper { text-decoration: none; color: inherit; display: block; margin-bottom: 30px; }
-        .delete-btn {
-            color: red; font-size: 0.8rem; margin-top: 10px; cursor: pointer; border: 1px solid red; padding: 5px; display: inline-block;
-        }
+        .delete-btn { color: red; font-size: 0.8rem; margin-top: 10px; cursor: pointer; border: 1px solid red; padding: 5px; display: inline-block; }
 
         @media (max-width: 1024px) { .grid-split, .project-hero { grid-template-columns: 1fr; } }
     </style>
@@ -226,14 +191,14 @@
                     <h1 class="rise d2" style="font-size: 5rem; line-height: 1; margin-top: 10px;">Elbek <br> Aliyev</h1>
                     <div class="gold-divider rise d3"></div>
                     <p class="rise d4" style="color: var(--text-secondary); line-height: 1.8; font-size: 1.1rem;">
-                        Student at Jizzakh Presidential School. Beginner for a graphic design. 
+                        Student at Jizzakh Presidential School. Beginner graphic designer. 
                         Future nanotechnologist.
                     </p>
                 </div>
                 <div class="card rise d5 tilt-card">
                     <h3 style="color: var(--gold);">Background</h3>
                     <p style="margin-top: 20px; font-size: 0.9rem; color: var(--text-secondary); line-height: 2;">
-                        Born 2010. Fluent in Uzbek, and intermediate in Russian, and upper-indermediate in English.
+                        Born 2010. Fluent in Uzbek, intermediate in Russian, and upper-intermediate in English.
                         Competitive programmer.
                     </p>
                 </div>
@@ -284,9 +249,6 @@
                 <div class="project-content">
                     <p style="color: var(--gold); font-family: 'Cinzel';">01. Major Project</p>
                     <h3 style="font-size: 2rem; margin: 10px 0;">EcoUZ-GPT</h3>
-                <div class="card rise d4 tilt-card">
-                    <div class="cert-img-container"><img src="C:\Users\User\Downloads\image_2026-01-20_15-14-26.png" alt="Certificate 4"></div>
-                </div>
                     <p style="color: var(--text-secondary); line-height: 1.8;">
                         The Urban Resilience Command Center. Uses Gemini 2.5 to generate thermodynamic urban cooling plans in less than 3 minutes.
                     </p>
@@ -297,7 +259,7 @@
                 </div>
                 <div class="project-visual">
                     <div class="scan-line"></div>
-                    <i class="fas fa-city" style="font-size: 5rem; color: var(--gold-glow);"></i>
+                    <img src="Elbek.png" alt="EcoUZ-GPT Project Preview" style="max-width: 80%; opacity: 0.6;">
                 </div>
             </div>
             
@@ -325,44 +287,44 @@
             
             <div class="software-grid">
                 <div class="card rise d1 tilt-card">
-                    <div class="cert-img-container"><img src="C:\Users\User\Downloads\sertifikatlar\photo_2026-01-19_18-21-39.jpg" alt="Certificate 1"></div>
-                    <h3 style="font-size: 0.9rem; color: var(--gold);">This certificate is given to all participants of Ninja IT contest</h3>
+                    <div class="cert-img-container"><img src="photo_2026-01-19_18-21-39.jpg" alt="Ninja IT Participant Certificate"></div>
+                    <h3 style="font-size: 0.9rem; color: var(--gold);">Ninja IT Participant</h3>
                 </div>
                 <div class="card rise d2 tilt-card">
-                    <div class="cert-img-container"><img src="C:\Users\User\Downloads\sertifikatlar\photo_2026-01-19_18-21-51.jpg" alt="Certificate 2"></div>
-                    <h3 style="font-size: 0.9rem; color: var(--gold);">Certificate for chess olympiad participants</h3>
+                    <div class="cert-img-container"><img src="photo_2026-01-19_18-21-51.jpg" alt="Chess Olympiad Certificate"></div>
+                    <h3 style="font-size: 0.9rem; color: var(--gold);">Chess Olympiad</h3>
                 </div>
                 <div class="card rise d3 tilt-card">
-                    <div class="cert-img-container"><img src="C:\Users\User\Downloads\sertifikatlar\photo_2026-01-19_18-21-54.jpg" alt="Certificate 3"></div>
-                    <h3 style="font-size: 0.9rem; color: var(--gold);">Thanks certificate to parents</h3>
+                    <div class="cert-img-container"><img src="photo_2026-01-19_18-21-54.jpg" alt="Parents Thanks Certificate"></div>
+                    <h3 style="font-size: 0.9rem; color: var(--gold);">Thanks to Parents</h3>
                 </div>
                 <div class="card rise d4 tilt-card">
-                    <div class="cert-img-container"><img src="C:\Users\User\Downloads\sertifikatlar\photo_2026-01-19_18-21-58.jpg" alt="Certificate 4"></div>
-                    <h3 style="font-size: 0.9rem; color: var(--gold);">For finishing the mobilography course in TeamIt</h3>
+                    <div class="cert-img-container"><img src="photo_2026-01-19_18-21-58.jpg" alt="Mobilography Certificate"></div>
+                    <h3 style="font-size: 0.9rem; color: var(--gold);">Mobilography Course</h3>
                 </div>
                 <div class="card rise d1 tilt-card">
-                    <div class="cert-img-container"><img src="C:\Users\User\Downloads\sertifikatlar\photo_2026-01-19_18-22-02.jpg" alt="Certificate 5"></div>
-                    <h3 style="font-size: 0.9rem; color: var(--gold);">An olympiad winner for Ziyo Study education center</h3>
+                    <div class="cert-img-container"><img src="photo_2026-01-19_18-22-02.jpg" alt="Ziyo Study Olympiad"></div>
+                    <h3 style="font-size: 0.9rem; color: var(--gold);">Ziyo Study Olympiad Winner</h3>
                 </div>
                 <div class="card rise d2 tilt-card">
-                    <div class="cert-img-container"><img src="C:\Users\User\Downloads\sertifikatlar\photo_2026-01-19_18-22-07.jpg" alt="Certificate 6"></div>
-                    <h3 style="font-size: 0.9rem; color: var(--gold);">A certificate given to the nomination winner of fastest coder</h3>
+                    <div class="cert-img-container"><img src="photo_2026-01-19_18-22-07.jpg" alt="Fastest Coder Certificate"></div>
+                    <h3 style="font-size: 0.9rem; color: var(--gold);">Fastest Coder Nomination</h3>
                 </div>
                 <div class="card rise d3 tilt-card">
-                    <div class="cert-img-container"><img src="C:\Users\User\Downloads\sertifikatlar\photo_2026-01-19_18-22-11.jpg" alt="Certificate 7"></div>
-                    <h3 style="font-size: 0.9rem; color: var(--gold);">Swimming olympiad 2nd place winner</h3>
+                    <div class="cert-img-container"><img src="photo_2026-01-19_18-22-11.jpg" alt="Swimming 2nd Place"></div>
+                    <h3 style="font-size: 0.9rem; color: var(--gold);">Swimming 2nd Place</h3>
                 </div>
                 <div class="card rise d4 tilt-card">
-                    <div class="cert-img-container"><img src="C:\Users\User\Downloads\sertifikatlar\photo_2026-01-19_18-22-14.jpg" alt="Certificate 8"></div>
-                    <h3 style="font-size: 0.9rem; color: var(--gold);">Swimming olympiad 2nd place for groups</h3>
+                    <div class="cert-img-container"><img src="photo_2026-01-19_18-22-14.jpg" alt="Swimming Group Winner"></div>
+                    <h3 style="font-size: 0.9rem; color: var(--gold);">Swimming Group 2nd Place</h3>
                 </div>
                 <div class="card rise d1 tilt-card">
-                    <div class="cert-img-container"><img src="C:\Users\User\Downloads\sertifikatlar\photo_2026-01-19_18-22-17.jpg" alt="Certificate 9"></div>
-                    <h3 style="font-size: 0.9rem; color: var(--gold);">Thanks letter to parents</h3>
+                    <div class="cert-img-container"><img src="photo_2026-01-19_18-22-17.jpg" alt="Parents Thanks Letter"></div>
+                    <h3 style="font-size: 0.9rem; color: var(--gold);">Parents Gratitude Letter</h3>
                 </div>
                 <div class="card rise d2 tilt-card">
-                    <div class="cert-img-container"><img src="C:\Users\User\Downloads\Telegram Desktop\Elbek.png" alt="Certificate 10"></div>
-                    <h3 style="font-size: 0.9rem; color: var(--gold);">Certificate Name 10</h3>
+                    <div class="cert-img-container"><img src="Elbek.png" alt="General Achievement"></div>
+                    <h3 style="font-size: 0.9rem; color: var(--gold);">General Achievement</h3>
                 </div>
             </div>
 
@@ -396,8 +358,7 @@
                 </div>
             </div>
 
-            <div id="blog-container" style="display: flex; justify-content: center; flex-direction: column; align-items: center; gap: 30px;">
-                </div>
+            <div id="blog-container" style="display: flex; justify-content: center; flex-direction: column; align-items: center; gap: 30px;"></div>
         </section>
 
         <section id="contact">
@@ -438,9 +399,6 @@
             icon.className = document.body.classList.contains('light-mode') ? 'fas fa-sun' : 'fas fa-moon';
         }
 
-        /* --- BLOG LOGIC (LOCAL STORAGE) --- */
-        
-        // 1. Load blogs when page starts
         document.addEventListener('DOMContentLoaded', loadBlogs);
 
         function toggleAddModal() {
@@ -457,7 +415,6 @@
 
             if(!title || !link) { alert("Please enter at least a Title and Link."); return; }
 
-            // Image handling (Convert to Base64 to save in text storage)
             if(fileInput.files && fileInput.files[0]) {
                 const reader = new FileReader();
                 reader.onload = function(e) {
@@ -465,56 +422,33 @@
                 };
                 reader.readAsDataURL(fileInput.files[0]);
             } else {
-                // No image uploaded, use default icon
                 storePostInBrowser(title, desc, category, link, null);
             }
         }
 
         function storePostInBrowser(title, desc, category, link, imgData) {
-            const newPost = {
-                id: Date.now(),
-                title: title,
-                desc: desc,
-                category: category,
-                link: link,
-                img: imgData
-            };
-
-            // Get existing blogs
+            const newPost = { id: Date.now(), title, desc, category, link, img: imgData };
             let posts = JSON.parse(localStorage.getItem('ea_portfolio_blogs')) || [];
             posts.push(newPost);
-            
-            // Save back to storage
             localStorage.setItem('ea_portfolio_blogs', JSON.stringify(posts));
-
-            // Reset Form
             document.getElementById('new-title').value = "";
             document.getElementById('new-desc').value = "";
             document.getElementById('new-link').value = "";
             toggleAddModal();
-            
-            // Refresh List
             loadBlogs();
         }
 
         function loadBlogs() {
             const container = document.getElementById('blog-container');
             const posts = JSON.parse(localStorage.getItem('ea_portfolio_blogs')) || [];
-            
-            container.innerHTML = ""; // Clear current list
+            container.innerHTML = posts.length === 0 ? "<p style='color:var(--text-secondary)'>No insights added yet.</p>" : "";
 
-            if(posts.length === 0) {
-                container.innerHTML = "<p style='color:var(--text-secondary)'>No insights added yet.</p>";
-                return;
-            }
-
-            // Loop through saved posts and create HTML
             posts.forEach(post => {
                 const imgHTML = post.img 
                     ? `<div style="width:100%; height:200px; overflow:hidden; margin-bottom:15px; border-bottom:1px solid var(--gold-glow);"><img src="${post.img}" style="width:100%; height:100%; object-fit:cover;"></div>`
                     : `<i class="fas fa-newspaper" style="font-size: 3rem; color: var(--gold); margin-bottom: 20px;"></i>`;
 
-                const html = `
+                container.innerHTML += `
                 <div style="position:relative;">
                     <a href="${post.link}" target="_blank" class="blog-link-wrapper">
                         <div class="card tilt-card" style="max-width: 600px; text-align: center;">
@@ -528,9 +462,7 @@
                         </div>
                     </a>
                     <div class="delete-btn" onclick="deletePost(${post.id})">DELETE</div>
-                </div>
-                `;
-                container.innerHTML += html;
+                </div>`;
             });
         }
 
@@ -542,23 +474,16 @@
             loadBlogs();
         }
 
-        /* --- END BLOG LOGIC --- */
-
         const texts = ["DISCIPLINED STUDENT", "PYTHON DEVELOPER", "FUTURE SCIENTIST"];
-        let count = 0;
-        let index = 0;
-        let currentText = "";
-        let letter = "";
+        let count = 0, index = 0, currentText = "", letter = "";
         
         (function type() {
             if (count === texts.length) count = 0;
             currentText = texts[count];
             letter = currentText.slice(0, ++index);
-            
             document.getElementById('typewriter').textContent = letter;
             if (letter.length === currentText.length) {
-                count++;
-                index = 0;
+                count++; index = 0;
                 setTimeout(type, 2000); 
             } else {
                 setTimeout(type, 100);
@@ -569,17 +494,12 @@
         cards.forEach(card => {
             card.addEventListener('mousemove', (e) => {
                 const rect = card.getBoundingClientRect();
-                const x = e.clientX - rect.left;
-                const y = e.clientY - rect.top;
-                const centerX = rect.width / 2;
-                const centerY = rect.height / 2;
-                const rotateX = ((y - centerY) / 10) * -1; 
-                const rotateY = (x - centerX) / 10;
+                const x = e.clientX - rect.left, y = e.clientY - rect.top;
+                const centerX = rect.width / 2, centerY = rect.height / 2;
+                const rotateX = ((y - centerY) / 10) * -1, rotateY = (x - centerX) / 10;
                 card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
             });
-            card.addEventListener('mouseleave', () => {
-                card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0)';
-            });
+            card.addEventListener('mouseleave', () => card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0)');
         });
 
         const canvas = document.getElementById('particle-canvas');
@@ -602,9 +522,7 @@
             }
             draw() {
                 ctx.fillStyle = getComputedStyle(document.body).getPropertyValue('--gold');
-                ctx.beginPath();
-                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-                ctx.fill();
+                ctx.beginPath(); ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2); ctx.fill();
             }
         }
 
@@ -612,42 +530,29 @@
             particlesArray = [];
             let numberOfParticles = (canvas.width * canvas.height) / 15000;
             for (let i = 0; i < numberOfParticles; i++) {
-                let x = Math.random() * canvas.width;
-                let y = Math.random() * canvas.height;
-                particlesArray.push(new Particle(x, y));
+                particlesArray.push(new Particle(Math.random() * canvas.width, Math.random() * canvas.height));
             }
         }
 
         function animateParticles() {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
             for (let i = 0; i < particlesArray.length; i++) {
-                particlesArray[i].update();
-                particlesArray[i].draw();
+                particlesArray[i].update(); particlesArray[i].draw();
                 for (let j = i; j < particlesArray.length; j++) {
-                    const dx = particlesArray[i].x - particlesArray[j].x;
-                    const dy = particlesArray[i].y - particlesArray[j].y;
+                    const dx = particlesArray[i].x - particlesArray[j].x, dy = particlesArray[i].y - particlesArray[j].y;
                     const distance = Math.sqrt(dx * dx + dy * dy);
                     if (distance < 100) {
-                        ctx.beginPath();
-                        ctx.strokeStyle = getComputedStyle(document.body).getPropertyValue('--gold-glow');
-                        ctx.lineWidth = 0.5;
-                        ctx.moveTo(particlesArray[i].x, particlesArray[i].y);
-                        ctx.lineTo(particlesArray[j].x, particlesArray[j].y);
-                        ctx.stroke();
+                        ctx.beginPath(); ctx.strokeStyle = getComputedStyle(document.body).getPropertyValue('--gold-glow');
+                        ctx.lineWidth = 0.5; ctx.moveTo(particlesArray[i].x, particlesArray[i].y);
+                        ctx.lineTo(particlesArray[j].x, particlesArray[j].y); ctx.stroke();
                     }
                 }
             }
             requestAnimationFrame(animateParticles);
         }
 
-        window.addEventListener('resize', () => {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-            initParticles();
-        });
-
-        initParticles();
-        animateParticles();
+        window.addEventListener('resize', () => { canvas.width = window.innerWidth; canvas.height = window.innerHeight; initParticles(); });
+        initParticles(); animateParticles();
     </script>
 </body>
 </html>
