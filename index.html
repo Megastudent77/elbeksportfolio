@@ -133,7 +133,6 @@
             position: absolute; width: 100%; height: 100%;
             transform: translateZ(15px); border: 1px solid var(--gold-glow);
             display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 10px;
-            /* Gradient set in HTML inline for variety */
         }
         .book-spine {
             position: absolute; width: 30px; height: 100%;
@@ -144,7 +143,7 @@
         .book-title { font-family: 'Cinzel'; color: #fff; font-size: 0.9rem; margin-bottom: 5px; text-shadow: 0 2px 5px rgba(0,0,0,0.8); }
         .book-author { font-family: 'Lora'; font-size: 0.7rem; color: #ccc; font-style: italic; }
 
-        /* --- PROJECT HERO (RESTORED VISUALS) --- */
+        /* --- PROJECT HERO VISUALS --- */
         .project-hero { background: var(--surface); border: 1px solid var(--gold-glow); display: grid; grid-template-columns: 1.2fr 1fr; overflow: hidden; margin-bottom: 50px; }
         .project-content { padding: 45px; }
         .project-visual { 
@@ -189,7 +188,7 @@
 
         /* --- BLOG --- */
         .admin-controls { margin-bottom: 30px; text-align: center; border-bottom: 1px solid var(--grid-line); padding-bottom: 20px; }
-        .ea-btn { background: transparent; border: 1px solid var(--gold); color: var(--gold); padding: 12px 25px; font-family: 'Cinzel'; cursor: pointer; transition: 0.3s; margin: 5px; letter-spacing: 1px; }
+        .ea-btn { background: transparent; border: 1px solid var(--gold); color: var(--gold); padding: 12px 25px; font-family: 'Cinzel'; cursor: pointer; transition: 0.3s; margin: 5px; letter-spacing: 1px; text-decoration: none; display: inline-block; }
         .ea-btn:hover { background: var(--gold); color: #000; }
         #add-blog-modal { display: none; background: var(--surface); border: 1px solid var(--gold); padding: 25px; max-width: 500px; margin: 0 auto 30px auto; }
         input, textarea { width: 100%; background: #050506; border: 1px solid var(--gold-glow); color: #fff; padding: 12px; margin-bottom: 15px; font-family: 'Inter'; outline: none; }
@@ -197,8 +196,9 @@
 
         /* --- FOOTER --- */
         footer { padding: 50px 10%; text-align: center; border-top: 1px solid var(--gold-glow); background: var(--nav-bg); margin-top: 100px; }
-        .footer-socials a { color: var(--text-secondary); margin: 0 15px; font-size: 1.2rem; transition: 0.3s; }
+        .footer-socials a { color: var(--text-secondary); margin: 0 15px; font-size: 1.2rem; transition: 0.3s; text-decoration: none; }
         .footer-socials a:hover { color: var(--gold); }
+        .robocontest-logo { font-family: 'Cinzel'; font-weight: bold; font-size: 0.8rem; vertical-align: middle; }
 
         @media (max-width: 1024px) { 
             .grid-split, .project-hero { grid-template-columns: 1fr; } 
@@ -262,7 +262,7 @@
                         <li><strong>Born:</strong> 2010</li>
                         <li><strong>Location:</strong> Jizzakh, Uzbekistan</li>
                         <li><strong>Languages:</strong> Uzbek, Russian, English (B2)</li>
-                        <li><strong>Focus:</strong> Competitive Programming & Design</li>
+                        <li><strong>Competitions:</strong> Robocontest.uz (@elbek007)</li>
                     </ul>
                 </div>
             </div>
@@ -281,12 +281,12 @@
                     <div class="timeline-item">
                         <span class="year">2024</span>
                         <h3>CEFR B2 Certification</h3>
-                        <p style="color: var(--text-secondary); font-size: 0.9rem; margin-top:5px;">Achieved upper-intermediate English proficiency (Score: 60/75).</p>
+                        <p style="color: var(--text-secondary); font-size: 0.9rem; margin-top:5px;">Achieved upper-intermediate English proficiency.</p>
                     </div>
                     <div class="timeline-item">
-                        <span class="year">2023</span>
+                        <span class="year">2021</span>
                         <h3>Presidential School Admission</h3>
-                        <p style="color: var(--text-secondary); font-size: 0.9rem; margin-top:5px;">Selected as one of the top scholars in the region.</p>
+                        <p style="color: var(--text-secondary); font-size: 0.9rem; margin-top:5px;">Successfully entered the Jizzakh Presidential School, focusing on STEM excellence.</p>
                     </div>
                     <div class="timeline-item">
                         <span class="year">2010</span>
@@ -295,7 +295,7 @@
                     </div>
                 </div>
                 <div class="card rise d4 tilt-card">
-                    <h3 style="color: var(--gold);">Services & Skills</h3>
+                    <h3 style="color: var(--gold);">Professional Pillars</h3>
                     <div class="gold-divider"></div>
                     <div style="display: flex; gap: 15px; flex-direction: column;">
                         <div style="padding: 15px; border: 1px solid var(--grid-line);">
@@ -303,8 +303,8 @@
                             <strong>Python Automation</strong>
                         </div>
                         <div style="padding: 15px; border: 1px solid var(--grid-line);">
-                            <i class="fas fa-pen-nib" style="color:var(--gold); margin-right: 10px;"></i> 
-                            <strong>Graphic Design</strong>
+                            <i class="fas fa-code" style="color:var(--gold); margin-right: 10px;"></i> 
+                            <strong>Robocontest Solver</strong>
                         </div>
                         <div style="padding: 15px; border: 1px solid var(--grid-line);">
                             <i class="fas fa-atom" style="color:var(--gold); margin-right: 10px;"></i> 
@@ -377,10 +377,9 @@
                     <p style="color: var(--text-secondary); line-height: 1.8;">
                         The Urban Resilience Command Center. Uses Gemini 2.5 to generate thermodynamic urban cooling plans in less than 3 minutes.
                     </p>
-                    <ul style="margin-top: 20px; list-style: none; color: var(--gold); font-size: 0.85rem;">
-                        <li>• 35.4% Energy Reduction</li>
-                        <li>• 99% Faster Planning</li>
-                    </ul>
+                    <div style="margin-top: 20px;">
+                        <span style="color:var(--gold); font-size: 0.8rem; border: 1px solid var(--gold-glow); padding: 5px 10px;">CORE: Python & Thermodynamic Logic</span>
+                    </div>
                 </div>
                 <div class="project-visual">
                     <div class="scan-line"></div>
@@ -415,7 +414,7 @@
                 <h3 style="color:var(--gold); margin-bottom:10px;">New Entry</h3>
                 <input type="text" id="new-title" placeholder="Title">
                 <input type="text" id="new-desc" placeholder="Summary">
-                <input type="text" id="new-category" placeholder="Category (e.g. Nanotech)">
+                <input type="text" id="new-category" placeholder="Category">
                 <input type="text" id="new-link" placeholder="URL">
                 <p style="color:var(--text-secondary); font-size:0.8rem; margin:10px 0;">Image:</p>
                 <input type="file" id="new-image" accept="image/*">
@@ -424,7 +423,6 @@
                     <button class="ea-btn" style="border-color: #555; color: #555;" onclick="toggleAddModal()">Close</button>
                 </div>
             </div>
-
             <div id="blog-container" style="display: flex; flex-direction: column; gap: 30px; align-items: center;"></div>
         </section>
 
@@ -442,10 +440,12 @@
 
         <footer>
             <div class="footer-socials">
-                <a href="#"><i class="fab fa-telegram"></i></a>
-                <a href="#"><i class="fab fa-instagram"></i></a>
-                <a href="#"><i class="fab fa-github"></i></a>
-                <a href="#"><i class="fab fa-linkedin"></i></a>
+                <a href="https://t.me/Sinister_Scribe2010" target="_blank"><i class="fab fa-telegram"></i></a>
+                <a href="https://www.instagram.com/Sinister_Scribe2010" target="_blank"><i class="fab fa-instagram"></i></a>
+                <a href="https://github.com/megastudent77" target="_blank"><i class="fab fa-github"></i></a>
+                <a href="https://robocontest.uz/profile/elbek007" target="_blank" title="Robocontest Profile">
+                    <span class="robocontest-logo">ROBO</span>
+                </a>
             </div>
             <p style="color: var(--text-secondary); margin-top: 20px; font-size: 0.8rem; font-family: 'Cinzel';">
                 &copy; 2026 Elbek Aliyev. All Systems Operational.
@@ -484,7 +484,6 @@
             const target = document.getElementById(id);
             target.classList.add('active');
             
-            // Re-trigger animations
             const elements = target.querySelectorAll('.rise');
             elements.forEach(el => { el.style.animation = 'none'; el.offsetHeight; el.style.animation = null; });
 
@@ -499,7 +498,7 @@
             icon.className = document.body.classList.contains('light-mode') ? 'fas fa-sun' : 'fas fa-moon';
         }
 
-        // BLOG LOGIC (Local Storage)
+        // BLOG LOGIC
         document.addEventListener('DOMContentLoaded', loadBlogs);
         function toggleAddModal() { const m = document.getElementById('add-blog-modal'); m.style.display = m.style.display === 'block' ? 'none' : 'block'; }
         
@@ -554,7 +553,7 @@
         }
 
         // TYPEWRITER
-        const texts = ["PYTHON DEVELOPER", "FUTURE NANOTECHNOLOGIST", "GRAPHIC DESIGNER"];
+        const texts = ["PYTHON DEVELOPER", "FUTURE NANOTECHNOLOGIST", "ROBOCONTEST SOLVER"];
         let count = 0, index = 0, currentText = "", letter = "";
         (function type() {
             if (count === texts.length) count = 0;
