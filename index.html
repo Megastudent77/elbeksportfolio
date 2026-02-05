@@ -6,6 +6,7 @@
     <title>Elbek Aliyev | Future Scientist & Developer</title>
     
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Lora:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css">
 
@@ -71,9 +72,26 @@
         @keyframes gridMove { 0% { background-position: 0 0; } 100% { background-position: 0 60px; } }
         #particle-canvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; opacity: 0.3; pointer-events: none; }
 
-        /* --- CURSOR --- */
-        #cursor-dot { width: 6px; height: 6px; background: var(--gold); position: fixed; border-radius: 50%; z-index: 10000; pointer-events: none; }
-        #cursor-outline { width: 40px; height: 40px; border: 1px solid var(--gold); position: fixed; border-radius: 50%; z-index: 9999; pointer-events: none; transition: transform 0.15s ease-out; }
+        /* --- NEW MAGNETIC CURSOR --- */
+        #cursor-dot { 
+            width: 8px; height: 8px; background: var(--gold); 
+            position: fixed; border-radius: 50%; z-index: 10000; 
+            pointer-events: none; transition: transform 0.2s ease, opacity 0.2s;
+        }
+        #cursor-outline { 
+            width: 50px; height: 50px; 
+            border: 1.5px solid var(--gold); 
+            position: fixed; border-radius: 50%; z-index: 9999; 
+            pointer-events: none; 
+            transition: transform 0.2s ease, background-color 0.2s ease, border-color 0.2s ease;
+        }
+        /* Hover State */
+        body.cursor-hover #cursor-outline { 
+            transform: scale(1.5); 
+            background-color: rgba(197, 160, 89, 0.15); 
+            border-color: transparent;
+        }
+        body.cursor-hover #cursor-dot { opacity: 0; }
 
         /* --- ANIMATIONS --- */
         @keyframes elementRise { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: translateY(0); } }
@@ -186,13 +204,49 @@
         .cert-img-container img { width: 100%; height: 100%; object-fit: cover; opacity: 0.7; transition: 0.5s; }
         .card:hover .cert-img-container img { opacity: 1; transform: scale(1.1); }
 
-        /* --- BLOG --- */
-        .admin-controls { margin-bottom: 30px; text-align: center; border-bottom: 1px solid var(--grid-line); padding-bottom: 20px; }
+        /* --- NEW BLOG / INSIGHTS STYLES --- */
+        .blog-card {
+            background: var(--surface); border: 1px solid var(--gold-glow);
+            transition: 0.4s; position: relative; overflow: hidden;
+            display: flex; flex-direction: column;
+        }
+        .blog-card:hover { border-color: var(--gold); transform: translateY(-5px); box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+        
+        /* --- PROFESSIONAL EDITOR MODAL (CMS STYLE) --- */
+        #blog-editor-overlay {
+            position: fixed; inset: 0; background: rgba(5, 5, 6, 0.98);
+            z-index: 5000; display: none; opacity: 0; transition: opacity 0.4s ease;
+            padding: 40px; overflow-y: auto; backdrop-filter: blur(10px);
+        }
+        #blog-editor-overlay.active { display: block; opacity: 1; }
+        
+        .editor-container {
+            max-width: 900px; margin: 0 auto;
+            animation: slideUp 0.5s cubic-bezier(0.2, 1, 0.3, 1);
+        }
+        @keyframes slideUp { from { transform: translateY(50px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+
+        .editor-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--gold); padding-bottom: 20px; margin-bottom: 30px; }
+        
+        .editor-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 40px; margin-bottom: 30px; }
+        
+        .input-group label { display: block; color: var(--gold); font-family: 'Cinzel'; font-size: 0.8rem; margin-bottom: 10px; letter-spacing: 1px; }
+        .editor-input {
+            width: 100%; background: rgba(255,255,255,0.03); border: 1px solid var(--grid-line);
+            padding: 15px; color: #fff; font-family: 'Inter'; font-size: 1rem; transition: 0.3s;
+        }
+        .editor-input:focus { border-color: var(--gold); outline: none; background: rgba(255,255,255,0.05); }
+        
+        .image-upload-box {
+            border: 2px dashed var(--gold-glow); height: 100%; min-height: 150px;
+            display: flex; flex-direction: column; justify-content: center; align-items: center;
+            cursor: pointer; transition: 0.3s;
+        }
+        .image-upload-box:hover { background: rgba(197, 160, 89, 0.05); border-color: var(--gold); }
+        .editor-textarea { min-height: 300px; resize: vertical; line-height: 1.6; font-family: 'Lora'; font-size: 1.1rem; }
+
         .ea-btn { background: transparent; border: 1px solid var(--gold); color: var(--gold); padding: 12px 25px; font-family: 'Cinzel'; cursor: pointer; transition: 0.3s; margin: 5px; letter-spacing: 1px; text-decoration: none; display: inline-block; }
         .ea-btn:hover { background: var(--gold); color: #000; }
-        #add-blog-modal { display: none; background: var(--surface); border: 1px solid var(--gold); padding: 25px; max-width: 500px; margin: 0 auto 30px auto; }
-        input, textarea { width: 100%; background: #050506; border: 1px solid var(--gold-glow); color: #fff; padding: 12px; margin-bottom: 15px; font-family: 'Inter'; outline: none; }
-        input:focus { border-color: var(--gold); }
 
         /* --- FOOTER --- */
         footer { padding: 50px 10%; text-align: center; border-top: 1px solid var(--gold-glow); background: var(--nav-bg); margin-top: 100px; }
@@ -201,7 +255,7 @@
         .robocontest-logo { font-family: 'Cinzel'; font-weight: bold; font-size: 0.8rem; vertical-align: middle; }
 
         @media (max-width: 1024px) { 
-            .grid-split, .project-hero { grid-template-columns: 1fr; } 
+            .grid-split, .project-hero, .editor-grid { grid-template-columns: 1fr; } 
             section { padding: 120px 5% 40px 5%; }
             nav { padding: 15px 5%; }
             .nav-menu { display: none; }
@@ -218,6 +272,7 @@
     <div class="bg-grid"></div>
     <div id="progress-bar"></div>
     <canvas id="particle-canvas"></canvas>
+    
     <div id="cursor-dot"></div>
     <div id="cursor-outline"></div>
 
@@ -406,24 +461,13 @@
             <h2 class="rise d1">Insights & Thoughts</h2>
             <div class="gold-divider rise d2"></div>
             
-            <div class="admin-controls rise d3">
-                <button class="ea-btn" onclick="toggleAddModal()">+ Write New Insight</button>
+            <div class="admin-controls rise d3" style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--gold-glow); padding-bottom: 20px;">
+                <p style="color: var(--text-secondary); font-family: 'Cinzel';">Archive Access</p>
+                <button class="ea-btn" onclick="openEditor()">+ Draft New Insight</button>
             </div>
 
-            <div id="add-blog-modal">
-                <h3 style="color:var(--gold); margin-bottom:10px;">New Entry</h3>
-                <input type="text" id="new-title" placeholder="Title">
-                <input type="text" id="new-desc" placeholder="Summary">
-                <input type="text" id="new-category" placeholder="Category">
-                <input type="text" id="new-link" placeholder="URL">
-                <p style="color:var(--text-secondary); font-size:0.8rem; margin:10px 0;">Image:</p>
-                <input type="file" id="new-image" accept="image/*">
-                <div style="margin-top:15px;">
-                    <button class="ea-btn" onclick="saveBlog()">Publish</button>
-                    <button class="ea-btn" style="border-color: #555; color: #555;" onclick="toggleAddModal()">Close</button>
+            <div id="blog-container" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 30px; margin-top: 40px;">
                 </div>
-            </div>
-            <div id="blog-container" style="display: flex; flex-direction: column; gap: 30px; align-items: center;"></div>
         </section>
 
         <section id="contact">
@@ -454,6 +498,53 @@
 
     </div>
 
+    <div id="blog-editor-overlay">
+        <div class="editor-container">
+            <div class="editor-header">
+                <h2 style="margin:0; font-size: 1.5rem;">New Research Entry</h2>
+                <button onclick="closeEditor()" style="background:none; border:none; color: var(--text-secondary); font-size: 2rem; cursor: pointer;">&times;</button>
+            </div>
+
+            <div class="editor-grid">
+                <div class="left-col">
+                    <div class="input-group" style="margin-bottom: 20px;">
+                        <label>Title of Insight</label>
+                        <input type="text" id="new-title" class="editor-input" placeholder="e.g. The Ethics of Nanotechnology">
+                    </div>
+                    <div class="input-group" style="margin-bottom: 20px;">
+                        <label>Category / Tag</label>
+                        <input type="text" id="new-category" class="editor-input" placeholder="e.g. Science, Philosophy, Code">
+                    </div>
+                    <div class="input-group">
+                        <label>External Reference Link</label>
+                        <input type="text" id="new-link" class="editor-input" placeholder="https://...">
+                    </div>
+                </div>
+                
+                <div class="right-col">
+                    <div class="input-group" style="height: 100%;">
+                        <label>Cover Visual</label>
+                        <input type="file" id="new-image" accept="image/*" style="display:none;" onchange="previewImage(this)">
+                        <div class="image-upload-box" onclick="document.getElementById('new-image').click()">
+                            <i class="fas fa-image" style="font-size: 2rem; color: var(--gold); margin-bottom: 10px;"></i>
+                            <span style="color: var(--text-secondary); font-size: 0.8rem;" id="img-preview-text">Click to Upload</span>
+                            <img id="img-preview" style="max-width: 100%; max-height: 100px; display: none; margin-top: 10px;">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="input-group">
+                <label>Abstract / Main Content</label>
+                <textarea id="new-desc" class="editor-input editor-textarea" placeholder="Write your thoughts here..."></textarea>
+            </div>
+
+            <div style="text-align: right; margin-top: 30px;">
+                <button class="ea-btn" onclick="saveBlog()" style="padding: 15px 50px; background: var(--bg-deep);">PUBLISH TO ARCHIVE</button>
+            </div>
+        </div>
+    </div>
+
     <script>
         // PRELOADER
         window.addEventListener('load', () => {
@@ -469,12 +560,26 @@
             document.getElementById("progress-bar").style.width = scrolled + "%";
         };
 
-        // CURSOR
+        // --- NEW MAGNETIC CURSOR LOGIC ---
         const dot = document.getElementById('cursor-dot');
         const outline = document.getElementById('cursor-outline');
+        
         window.addEventListener('mousemove', (e) => {
-            dot.style.left = e.clientX + 'px'; dot.style.top = e.clientY + 'px';
-            outline.animate({ left: e.clientX - 20 + 'px', top: e.clientY - 20 + 'px' }, { duration: 400, fill: "forwards" });
+            // Dot follows instantly
+            dot.style.left = `${e.clientX}px`;
+            dot.style.top = `${e.clientY}px`;
+            // Outline follows with lag
+            outline.animate({
+                left: `${e.clientX - 25}px`,
+                top: `${e.clientY - 25}px`
+            }, { duration: 500, fill: "forwards" });
+        });
+
+        // Interactive Element Hovering
+        const interactiveElements = document.querySelectorAll('a, button, input, textarea, .card, .image-upload-box, .book-container, .soft-card');
+        interactiveElements.forEach(el => {
+            el.addEventListener('mouseenter', () => document.body.classList.add('cursor-hover'));
+            el.addEventListener('mouseleave', () => document.body.classList.remove('cursor-hover'));
         });
 
         // NAVIGATION LOGIC
@@ -498,10 +603,31 @@
             icon.className = document.body.classList.contains('light-mode') ? 'fas fa-sun' : 'fas fa-moon';
         }
 
-        // BLOG LOGIC
+        // --- PROFESSIONAL BLOG LOGIC ---
         document.addEventListener('DOMContentLoaded', loadBlogs);
-        function toggleAddModal() { const m = document.getElementById('add-blog-modal'); m.style.display = m.style.display === 'block' ? 'none' : 'block'; }
         
+        function openEditor() {
+            document.getElementById('blog-editor-overlay').classList.add('active');
+            document.body.style.overflow = 'hidden'; // Lock scroll
+        }
+
+        function closeEditor() {
+            document.getElementById('blog-editor-overlay').classList.remove('active');
+            document.body.style.overflow = 'auto'; // Unlock scroll
+        }
+
+        function previewImage(input) {
+            if (input.files && input.files[0]) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    document.getElementById('img-preview').src = e.target.result;
+                    document.getElementById('img-preview').style.display = 'block';
+                    document.getElementById('img-preview-text').style.display = 'none';
+                }
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
         function saveBlog() {
             const title = document.getElementById('new-title').value;
             const desc = document.getElementById('new-desc').value;
@@ -509,14 +635,31 @@
             const link = document.getElementById('new-link').value;
             const fileInput = document.getElementById('new-image');
 
-            if(!title || !link) { alert("Title and Link required."); return; }
+            if(!title || !desc) { alert("Title and Content are required."); return; }
 
             const save = (img) => {
-                const newPost = { id: Date.now(), title, desc, category, link, img };
+                const newPost = { 
+                    id: Date.now(), 
+                    title, 
+                    desc, 
+                    category: category || "General", 
+                    link: link || "#", 
+                    img 
+                };
                 let posts = JSON.parse(localStorage.getItem('ea_portfolio_blogs')) || [];
-                posts.push(newPost);
+                posts.unshift(newPost); // Add to top
                 localStorage.setItem('ea_portfolio_blogs', JSON.stringify(posts));
-                toggleAddModal(); loadBlogs();
+                
+                // Reset inputs
+                document.getElementById('new-title').value = '';
+                document.getElementById('new-desc').value = '';
+                document.getElementById('new-category').value = '';
+                document.getElementById('new-link').value = '';
+                document.getElementById('new-image').value = '';
+                document.getElementById('img-preview').style.display = 'none';
+                document.getElementById('img-preview-text').style.display = 'block';
+
+                closeEditor(); loadBlogs();
             };
 
             if(fileInput.files[0]) {
@@ -529,24 +672,38 @@
         function loadBlogs() {
             const container = document.getElementById('blog-container');
             const posts = JSON.parse(localStorage.getItem('ea_portfolio_blogs')) || [];
-            container.innerHTML = posts.length ? "" : "<p style='color:var(--text-secondary)'>No insights yet.</p>";
+            
+            if (posts.length === 0) {
+                container.innerHTML = "<p style='color:var(--text-secondary); grid-column: 1/-1; text-align:center;'>Archive is currently empty.</p>";
+                return;
+            }
+            
+            container.innerHTML = "";
             posts.forEach(post => {
-                const imgHTML = post.img ? `<img src="${post.img}" style="width:100%; height:200px; object-fit:cover; border-bottom:1px solid var(--gold);">` : '';
+                const imgHTML = post.img 
+                    ? `<div style="height: 180px; overflow: hidden;"><img src="${post.img}" style="width:100%; height:100%; object-fit:cover; transition: 0.5s;"></div>` 
+                    : `<div style="height: 10px; background: var(--gold-glow);"></div>`;
+
                 container.innerHTML += `
-                <div class="card tilt-card" style="width:100%; max-width:600px; padding:0; overflow:hidden;">
+                <div class="blog-card tilt-card">
                     ${imgHTML}
-                    <div style="padding:25px;">
-                        <span style="color:var(--gold); font-size:0.8rem; font-family:'Cinzel'">${post.category}</span>
-                        <h3 style="margin:10px 0;">${post.title}</h3>
-                        <p style="color:var(--text-secondary); margin-bottom:20px;">${post.desc}</p>
-                        <a href="${post.link}" target="_blank" class="ea-btn" style="font-size:0.7rem;">READ MORE</a>
-                        <button onclick="deletePost(${post.id})" style="background:none; border:none; color:red; float:right; cursor:pointer;">&times;</button>
+                    <div style="padding: 25px; display: flex; flex-direction: column; height: 100%;">
+                        <div style="display:flex; justify-content:space-between; margin-bottom: 10px;">
+                            <span style="color:var(--gold); font-size:0.75rem; font-family:'Cinzel'; text-transform:uppercase; letter-spacing:1px;">${post.category}</span>
+                            <button onclick="deletePost(${post.id})" style="background:none; border:none; color:rgba(255,0,0,0.5); cursor:pointer;"><i class="fas fa-trash"></i></button>
+                        </div>
+                        <h3 style="font-size: 1.2rem; margin-bottom: 15px; font-family: 'Cinzel';">${post.title}</h3>
+                        <p style="color:var(--text-secondary); font-size: 0.95rem; line-height: 1.6; margin-bottom: 20px; flex-grow: 1;">
+                            ${post.desc.substring(0, 120)}...
+                        </p>
+                        <a href="${post.link}" target="_blank" class="ea-btn" style="text-align:center; font-size: 0.8rem;">ACCESS FILE</a>
                     </div>
                 </div>`;
             });
         }
+        
         function deletePost(id) {
-            if(!confirm("Delete?")) return;
+            if(!confirm("Delete this entry?")) return;
             let posts = JSON.parse(localStorage.getItem('ea_portfolio_blogs')) || [];
             localStorage.setItem('ea_portfolio_blogs', JSON.stringify(posts.filter(p => p.id !== id)));
             loadBlogs();
@@ -569,7 +726,7 @@
             card.addEventListener('mousemove', (e) => {
                 const rect = card.getBoundingClientRect();
                 const x = e.clientX - rect.left, y = e.clientY - rect.top;
-                card.style.transform = `perspective(1000px) rotateX(${((y - rect.height/2)/10)*-1}deg) rotateY(${(x - rect.width/2)/10}deg)`;
+                card.style.transform = `perspective(1000px) rotateX(${((y - rect.height/2)/20)*-1}deg) rotateY(${(x - rect.width/2)/20}deg)`;
             });
             card.addEventListener('mouseleave', () => card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0)');
         });
