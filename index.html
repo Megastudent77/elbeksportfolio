@@ -188,21 +188,39 @@
         .timeline-item:hover::before { background: var(--gold); transform: scale(1.3); }
         .year { color: var(--gold); font-family: 'Cinzel'; font-size: 0.9rem; margin-bottom: 5px; display: block; }
 
-        /* --- SOFTWARE GRID --- */
-        .software-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 20px; }
+        /* --- SOFTWARE GRID (UPDATED) --- */
+        .software-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 30px; margin-top: 40px; }
         .soft-card {
-            background: var(--surface); border: 1px solid var(--gold-glow); padding: 20px;
-            display: flex; flex-direction: column; align-items: center; gap: 10px; transition: var(--transition);
+            background: var(--surface); border: 1px solid var(--gold-glow); padding: 30px 20px;
+            display: flex; flex-direction: column; align-items: center; gap: 15px; transition: var(--transition);
+            text-align: center;
         }
-        .soft-card i { font-size: 2rem; color: var(--text-secondary); transition: 0.4s; }
-        .soft-card:hover { transform: translateY(-5px); border-color: var(--gold); background: rgba(197, 160, 89, 0.05); }
-        .soft-card:hover i { color: var(--gold); }
+        .soft-card i { font-size: 3rem; color: var(--text-secondary); transition: 0.4s; }
+        .soft-card h4 { font-family: 'Cinzel'; font-size: 0.9rem; color: var(--text-primary); margin-top: 10px; transition: 0.3s; }
+        
+        .soft-card:hover { transform: translateY(-10px); border-color: var(--gold); background: rgba(197, 160, 89, 0.05); box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+        .soft-card:hover i { color: var(--gold); transform: scale(1.1); }
+        .soft-card:hover h4 { color: var(--gold); }
 
         /* --- CERTIFICATES --- */
         .cert-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 20px; }
-        .cert-img-container { width: 100%; height: 150px; background: #000; overflow: hidden; margin-bottom: 10px; border: 1px solid var(--gold-glow); }
+        .cert-img-container { width: 100%; height: 150px; background: #000; overflow: hidden; margin-bottom: 10px; border: 1px solid var(--gold-glow); cursor: pointer; }
         .cert-img-container img { width: 100%; height: 100%; object-fit: cover; opacity: 0.7; transition: 0.5s; }
-        .card:hover .cert-img-container img { opacity: 1; transform: scale(1.1); }
+        .cert-img-container:hover img { opacity: 1; transform: scale(1.1); }
+
+        /* --- LIGHTBOX (For enlarging certificates) --- */
+        #lightbox {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.95); z-index: 50000;
+            display: none; align-items: center; justify-content: center;
+            opacity: 0; transition: opacity 0.4s;
+            cursor: zoom-out;
+        }
+        #lightbox.active { display: flex; opacity: 1; }
+        #lightbox img { max-width: 90%; max-height: 90vh; border: 2px solid var(--gold); box-shadow: 0 0 50px rgba(197, 160, 89, 0.2); transform: scale(0.9); transition: transform 0.4s; }
+        #lightbox.active img { transform: scale(1); }
+        #lightbox-close { position: absolute; top: 30px; right: 30px; font-size: 3rem; color: var(--gold); cursor: pointer; transition: 0.3s; }
+        #lightbox-close:hover { transform: rotate(90deg); color: #fff; }
 
         /* --- NEW BLOG / INSIGHTS STYLES --- */
         .blog-card {
@@ -275,6 +293,11 @@
     
     <div id="cursor-dot"></div>
     <div id="cursor-outline"></div>
+
+    <div id="lightbox" onclick="closeLightbox()">
+        <span id="lightbox-close">&times;</span>
+        <img id="lightbox-img" src="" onclick="event.stopPropagation()">
+    </div>
 
     <nav>
         <a href="#" class="logo" onclick="showSection('home')">EA</a>
@@ -370,238 +393,74 @@
             </div>
         </section>
 
-        
-            <section id="library">
-        <h2 class="rise d1">The Archive</h2>
-        <div class="gold-divider rise d2"></div>
-        <p class="rise d3" style="margin-bottom: 40px; color: var(--text-secondary);">
-            A collection of literature that shapes my scientific and philosophical worldview.
-        </p>
-        
-        <div class="library-shelf rise d4">
+        <section id="software">
+            <h2 class="rise d1">Digital Arsenal</h2>
+            <div class="gold-divider rise d2"></div>
+            <p class="rise d3" style="color: var(--text-secondary);">Tools and technologies I use to create, design, and code.</p>
             
-            <div class="book-container">
-                <div class="book">
-                    <div class="book-front" style="background: linear-gradient(135deg, #2d5a27 0%, #1a3c17 100%);">
-                        <span class="book-title">Chinor</span>
-                        <span class="book-author">Asqad Muxtor</span>
-                    </div>
-                    <div class="book-spine" style="background: #1a3c17;"><span class="spine-text">CHINOR</span></div>
+            <div class="software-grid rise d4">
+                <div class="soft-card">
+                    <i class="devicon-python-plain"></i>
+                    <h4>Python</h4>
+                </div>
+                
+                <div class="soft-card">
+                    <i class="devicon-photoshop-plain"></i>
+                    <h4>Photoshop</h4>
+                </div>
+                
+                <div class="soft-card">
+                    <i class="devicon-illustrator-plain"></i>
+                    <h4>Illustrator</h4>
+                </div>
+                
+                <div class="soft-card">
+                    <i class="devicon-premierepro-plain"></i>
+                    <h4>Premiere Pro</h4>
+                </div>
+                
+                <div class="soft-card">
+                    <i class="fas fa-pen-nib"></i>
+                    <h4>Corel Draw</h4>
+                </div>
+
+                <div class="soft-card">
+                    <i class="devicon-canva-original"></i>
+                    <h4>Canva</h4>
+                </div>
+
+                <div class="soft-card">
+                    <i class="fas fa-film"></i>
+                    <h4>Capcut</h4>
+                </div>
+
+                <div class="soft-card">
+                    <i class="fas fa-cat"></i>
+                    <h4>Scratch</h4>
+                </div>
+
+                <div class="soft-card">
+                    <i class="fab fa-windows"></i>
+                    <h4>MS Office</h4>
                 </div>
             </div>
-    
-            <div class="book-container">
-                <div class="book">
-                    <div class="book-front" style="background: linear-gradient(135deg, #6b2c45 0%, #3e1222 100%);">
-                        <span class="book-title">Ufq</span>
-                        <span class="book-author">Said Ahmad</span>
-                    </div>
-                    <div class="book-spine" style="background: #3e1222;"><span class="spine-text">UFQ</span></div>
-                </div>
+        </section>
+
+        <section id="library">
+            <h2 class="rise d1">The Archive</h2>
+            <div class="gold-divider rise d2"></div>
+            <p class="rise d3" style="margin-bottom: 40px; color: var(--text-secondary);">
+                A collection of literature that shapes my scientific and philosophical worldview.
+            </p>
+            
+            <div class="library-shelf rise d4">
+                <div class="book-container"><div class="book"><div class="book-front" style="background: linear-gradient(135deg, #2d5a27 0%, #1a3c17 100%);"><span class="book-title">Chinor</span><span class="book-author">Asqad Muxtor</span></div><div class="book-spine" style="background: #1a3c17;"><span class="spine-text">CHINOR</span></div></div></div>
+                <div class="book-container"><div class="book"><div class="book-front" style="background: linear-gradient(135deg, #6b2c45 0%, #3e1222 100%);"><span class="book-title">Ufq</span><span class="book-author">Said Ahmad</span></div><div class="book-spine" style="background: #3e1222;"><span class="spine-text">UFQ</span></div></div></div>
+                <div class="book-container"><div class="book"><div class="book-front" style="background: linear-gradient(135deg, #8c6a43 0%, #5d4020 100%);"><span class="book-title">Shumbola</span><span class="book-author">G'afur G'ulom</span></div><div class="book-spine" style="background: #5d4020;"><span class="spine-text">SHUMBOLA</span></div></div></div>
+                <div class="book-container"><div class="book"><div class="book-front" style="background: linear-gradient(135deg, #ff4500 0%, #8b0000 100%);"><span class="book-title">Fahrenheit<br>451</span><span class="book-author">Ray Bradbury</span></div><div class="book-spine" style="background: #8b0000;"><span class="spine-text">451</span></div></div></div>
             </div>
-    
-            <div class="book-container">
-                <div class="book">
-                    <div class="book-front" style="background: linear-gradient(135deg, #8c6a43 0%, #5d4020 100%);">
-                        <span class="book-title">Shumbola</span>
-                        <span class="book-author">G'afur G'ulom</span>
-                    </div>
-                    <div class="book-spine" style="background: #5d4020;"><span class="spine-text">SHUMBOLA</span></div>
-                </div>
-            </div>
-    
-            <div class="book-container">
-                <div class="book">
-                    <div class="book-front" style="background: linear-gradient(135deg, #556b2f 0%, #304212 100%);">
-                        <span class="book-title">Quyonlar<br>Saltanati</span>
-                        <span class="book-author">X. To'xtaboyev</span>
-                    </div>
-                    <div class="book-spine" style="background: #304212;"><span class="spine-text">TO'XTABOYEV</span></div>
-                </div>
-            </div>
-    
-            <div class="book-container">
-                <div class="book">
-                    <div class="book-front" style="background: linear-gradient(135deg, #0f1c3f 0%, #050a1a 100%);">
-                        <span class="book-title">Yulduzli<br>Tunlar</span>
-                        <span class="book-author">Pirimqul Qodirov</span>
-                    </div>
-                    <div class="book-spine" style="background: #050a1a;"><span class="spine-text">BABUR</span></div>
-                </div>
-            </div>
-    
-            <div class="book-container">
-                <div class="book">
-                    <div class="book-front" style="background: linear-gradient(135deg, #c79a57 0%, #8f6a35 100%); color: #000;">
-                        <span class="book-title" style="color:#2a1a08">Dunyoning<br>Ishlari</span>
-                        <span class="book-author" style="color:#2a1a08">O'. Hoshimov</span>
-                    </div>
-                    <div class="book-spine" style="background: #8f6a35;"><span class="spine-text" style="color:#000;">HOSHIMOV</span></div>
-                </div>
-            </div>
-    
-            <div class="book-container">
-                <div class="book">
-                    <div class="book-front" style="background: linear-gradient(135deg, #7a1e1e 0%, #4a0d0d 100%);">
-                        <span class="book-title">Mehrobdan<br>Chayon</span>
-                        <span class="book-author">Abdulla Qodiriy</span>
-                    </div>
-                    <div class="book-spine" style="background: #4a0d0d;"><span class="spine-text">QODIRIY</span></div>
-                </div>
-            </div>
-    
-            <div class="book-container">
-                <div class="book">
-                    <div class="book-front" style="background: linear-gradient(135deg, #d4a017 0%, #99700b 100%); color: #000;">
-                        <span class="book-title" style="color:#000">5 Bolali<br>Yigitcha</span>
-                        <span class="book-author" style="color:#333">X. To'xtaboyev</span>
-                    </div>
-                    <div class="book-spine" style="background: #99700b;"><span class="spine-text" style="color:#000;">5 BOLA</span></div>
-                </div>
-            </div>
-    
-            <div class="book-container">
-                <div class="book">
-                    <div class="book-front" style="background: linear-gradient(135deg, #81a8b8 0%, #466978 100%);">
-                        <span class="book-title">Oq Kema</span>
-                        <span class="book-author">Chingiz Aytmatov</span>
-                    </div>
-                    <div class="book-spine" style="background: #466978;"><span class="spine-text">AYTMATOV</span></div>
-                </div>
-            </div>
-    
-            <div class="book-container">
-                <div class="book">
-                    <div class="book-front" style="background: linear-gradient(135deg, #594d46 0%, #302824 100%);">
-                        <span class="book-title">Ot Kishnagan<br>Oqshom</span>
-                        <span class="book-author">Tog'ay Murod</span>
-                    </div>
-                    <div class="book-spine" style="background: #302824;"><span class="spine-text">TOG'AY</span></div>
-                </div>
-            </div>
-    
-            <div class="book-container">
-                <div class="book">
-                    <div class="book-front" style="background: linear-gradient(135deg, #4b0082 0%, #2e004f 100%);">
-                        <span class="book-title">Koinot<br>Javohiri</span>
-                        <span class="book-author">Sa'dulla Quronov</span>
-                    </div>
-                    <div class="book-spine" style="background: #2e004f;"><span class="spine-text">KOINOT</span></div>
-                </div>
-            </div>
-    
-            <div class="book-container">
-                <div class="book">
-                    <div class="book-front" style="background: linear-gradient(135deg, #ff4500 0%, #8b0000 100%);">
-                        <span class="book-title">Fahrenheit<br>451</span>
-                        <span class="book-author">Ray Bradbury</span>
-                    </div>
-                    <div class="book-spine" style="background: #8b0000;"><span class="spine-text">451</span></div>
-                </div>
-            </div>
-    
-            <div class="book-container">
-                <div class="book">
-                    <div class="book-front" style="background: linear-gradient(135deg, #708090 0%, #2f4f4f 100%);">
-                        <span class="book-title">All Quiet on<br>Western Front</span>
-                        <span class="book-author">E. M. Remarque</span>
-                    </div>
-                    <div class="book-spine" style="background: #2f4f4f;"><span class="spine-text">REMARQUE</span></div>
-                </div>
-            </div>
-    
-            <div class="book-container">
-                <div class="book">
-                    <div class="book-front" style="background: linear-gradient(135deg, #f0e68c 0%, #bdb76b 100%); color: #000;">
-                        <span class="book-title" style="color: #333;">The Little<br>Prince</span>
-                        <span class="book-author" style="color: #444;">Saint-Exupéry</span>
-                    </div>
-                    <div class="book-spine" style="background: #bdb76b;"><span class="spine-text" style="color:#000;">PRINCE</span></div>
-                </div>
-            </div>
-    
-            <div class="book-container">
-                <div class="book">
-                    <div class="book-front" style="background: linear-gradient(135deg, #00ced1 0%, #008b8b 100%);">
-                        <span class="book-title">Martin<br>Eden</span>
-                        <span class="book-author">Jack London</span>
-                    </div>
-                    <div class="book-spine" style="background: #008b8b;"><span class="spine-text">LONDON</span></div>
-                </div>
-            </div>
-    
-            <div class="book-container">
-                <div class="book">
-                    <div class="book-front" style="background: linear-gradient(135deg, #333333 0%, #000000 100%);">
-                        <span class="book-title">Miss<br>Peregrine</span>
-                        <span class="book-author">Ransom Riggs</span>
-                    </div>
-                    <div class="book-spine" style="background: #000000;"><span class="spine-text">PECULIAR</span></div>
-                </div>
-            </div>
-    
-            <div class="book-container">
-                <div class="book">
-                    <div class="book-front" style="background: linear-gradient(135deg, #1e90ff 0%, #00008b 100%);">
-                        <span class="book-title">Old Man &<br>The Sea</span>
-                        <span class="book-author">Ernest Hemingway</span>
-                    </div>
-                    <div class="book-spine" style="background: #00008b;"><span class="spine-text">HEMINGWAY</span></div>
-                </div>
-            </div>
-    
-            <div class="book-container">
-                <div class="book">
-                    <div class="book-front" style="background: linear-gradient(135deg, #4682b4 0%, #191970 100%);">
-                        <span class="book-title">Captain<br>at 15</span>
-                        <span class="book-author">Jules Verne</span>
-                    </div>
-                    <div class="book-spine" style="background: #191970;"><span class="spine-text">VERNE</span></div>
-                </div>
-            </div>
-    
-            <div class="book-container">
-                <div class="book">
-                    <div class="book-front" style="background: linear-gradient(135deg, #deb887 0%, #8b4513 100%); color:#000;">
-                        <span class="book-title" style="color:#2a1a08">Gulliver's<br>Travels</span>
-                        <span class="book-author" style="color:#2a1a08">Jonathan Swift</span>
-                    </div>
-                    <div class="book-spine" style="background: #8b4513;"><span class="spine-text" style="color:#000;">SWIFT</span></div>
-                </div>
-            </div>
-    
-            <div class="book-container">
-                <div class="book">
-                    <div class="book-front" style="background: linear-gradient(135deg, #ffa500 0%, #ff8c00 100%);">
-                        <span class="book-title">The Adv.<br>of Dunno</span>
-                        <span class="book-author">Nikolay Nosov</span>
-                    </div>
-                    <div class="book-spine" style="background: #ff8c00;"><span class="spine-text">NOSOV</span></div>
-                </div>
-            </div>
-    
-            <div class="book-container">
-                <div class="book">
-                    <div class="book-front" style="background: linear-gradient(135deg, #800000 0%, #300000 100%);">
-                        <span class="book-title">Animal<br>Farm</span>
-                        <span class="book-author">George Orwell</span>
-                    </div>
-                    <div class="book-spine" style="background: #300000;"><span class="spine-text">ORWELL</span></div>
-                </div>
-            </div>
-    
-            <div class="book-container">
-                <div class="book">
-                    <div class="book-front" style="background: linear-gradient(135deg, #d8bfd8 0%, #8b008b 100%); color:#000;">
-                        <span class="book-title" style="color:#000">Pride &<br>Prejudice</span>
-                        <span class="book-author" style="color:#333">Jane Austen</span>
-                    </div>
-                    <div class="book-spine" style="background: #8b008b;"><span class="spine-text" style="color:#000;">AUSTEN</span></div>
-                </div>
-            </div>
-    
-        </div>
-    </section>
+        </section>
+
         <section id="portfolio">
             <h2 class="rise d1">Masterpieces</h2>
             <div class="gold-divider rise d2"></div>
@@ -624,17 +483,19 @@
             </div>
 
             <h3 class="rise d4" style="color: var(--gold); margin: 40px 0 20px 0;">Certifications Hall</h3>
+            <p style="color: var(--text-secondary); font-size: 0.8rem; margin-bottom: 20px;">*Click on any certificate to enlarge</p>
+            
             <div class="cert-grid">
-                <div class="card rise d1"><div class="cert-img-container"><img src="photo_2026-01-19_18-21-39.jpg" loading="lazy"></div><p style="font-size:0.8rem; color:var(--text-secondary);">Ninja IT Contest</p></div>
-                <div class="card rise d2"><div class="cert-img-container"><img src="photo_2026-01-19_18-21-51.jpg" loading="lazy"></div><p style="font-size:0.8rem; color:var(--text-secondary);">Chess Olympiad</p></div>
-                <div class="card rise d3"><div class="cert-img-container"><img src="photo_2026-01-19_18-21-54.jpg" loading="lazy"></div><p style="font-size:0.8rem; color:var(--text-secondary);">Parent Gratitude</p></div>
-                <div class="card rise d4"><div class="cert-img-container"><img src="photo_2026-01-19_18-21-58.jpg" loading="lazy"></div><p style="font-size:0.8rem; color:var(--text-secondary);">Mobilography</p></div>
-                <div class="card rise d1"><div class="cert-img-container"><img src="photo_2026-01-19_18-22-02.jpg" loading="lazy"></div><p style="font-size:0.8rem; color:var(--text-secondary);">Ziyo Study Winner</p></div>
-                <div class="card rise d2"><div class="cert-img-container"><img src="photo_2026-01-19_18-22-07.jpg" loading="lazy"></div><p style="font-size:0.8rem; color:var(--text-secondary);">Fastest Coder</p></div>
-                <div class="card rise d3"><div class="cert-img-container"><img src="photo_2026-01-19_18-22-11.jpg" loading="lazy"></div><p style="font-size:0.8rem; color:var(--text-secondary);">Swimming Silver</p></div>
-                <div class="card rise d4"><div class="cert-img-container"><img src="photo_2026-01-19_18-22-14.jpg" loading="lazy"></div><p style="font-size:0.8rem; color:var(--text-secondary);">Team Swimming</p></div>
-                <div class="card rise d1"><div class="cert-img-container"><img src="photo_2026-01-19_18-22-17.jpg" loading="lazy"></div><p style="font-size:0.8rem; color:var(--text-secondary);">Parent Letter</p></div>
-                <div class="card rise d2"><div class="cert-img-container"><img src="Elbek.png" loading="lazy"></div><p style="font-size:0.8rem; color:var(--text-secondary);">General Achievement</p></div>
+                <div class="card rise d1"><div class="cert-img-container"><img src="photo_2026-01-19_18-21-39.jpg" loading="lazy" onclick="openLightbox(this.src)"></div><p style="font-size:0.8rem; color:var(--text-secondary);">Ninja IT Contest</p></div>
+                <div class="card rise d2"><div class="cert-img-container"><img src="photo_2026-01-19_18-21-51.jpg" loading="lazy" onclick="openLightbox(this.src)"></div><p style="font-size:0.8rem; color:var(--text-secondary);">Chess Olympiad</p></div>
+                <div class="card rise d3"><div class="cert-img-container"><img src="photo_2026-01-19_18-21-54.jpg" loading="lazy" onclick="openLightbox(this.src)"></div><p style="font-size:0.8rem; color:var(--text-secondary);">Parent Gratitude</p></div>
+                <div class="card rise d4"><div class="cert-img-container"><img src="photo_2026-01-19_18-21-58.jpg" loading="lazy" onclick="openLightbox(this.src)"></div><p style="font-size:0.8rem; color:var(--text-secondary);">Mobilography</p></div>
+                <div class="card rise d1"><div class="cert-img-container"><img src="photo_2026-01-19_18-22-02.jpg" loading="lazy" onclick="openLightbox(this.src)"></div><p style="font-size:0.8rem; color:var(--text-secondary);">Ziyo Study Winner</p></div>
+                <div class="card rise d2"><div class="cert-img-container"><img src="photo_2026-01-19_18-22-07.jpg" loading="lazy" onclick="openLightbox(this.src)"></div><p style="font-size:0.8rem; color:var(--text-secondary);">Fastest Coder</p></div>
+                <div class="card rise d3"><div class="cert-img-container"><img src="photo_2026-01-19_18-22-11.jpg" loading="lazy" onclick="openLightbox(this.src)"></div><p style="font-size:0.8rem; color:var(--text-secondary);">Swimming Silver</p></div>
+                <div class="card rise d4"><div class="cert-img-container"><img src="photo_2026-01-19_18-22-14.jpg" loading="lazy" onclick="openLightbox(this.src)"></div><p style="font-size:0.8rem; color:var(--text-secondary);">Team Swimming</p></div>
+                <div class="card rise d1"><div class="cert-img-container"><img src="photo_2026-01-19_18-22-17.jpg" loading="lazy" onclick="openLightbox(this.src)"></div><p style="font-size:0.8rem; color:var(--text-secondary);">Parent Letter</p></div>
+                <div class="card rise d2"><div class="cert-img-container"><img src="Elbek.png" loading="lazy" onclick="openLightbox(this.src)"></div><p style="font-size:0.8rem; color:var(--text-secondary);">General Achievement</p></div>
             </div>
         </section>
 
@@ -757,7 +618,7 @@
         });
 
         // Interactive Element Hovering
-        const interactiveElements = document.querySelectorAll('a, button, input, textarea, .card, .image-upload-box, .book-container, .soft-card');
+        const interactiveElements = document.querySelectorAll('a, button, input, textarea, .card, .image-upload-box, .book-container, .soft-card, .cert-img-container');
         interactiveElements.forEach(el => {
             el.addEventListener('mouseenter', () => document.body.classList.add('cursor-hover'));
             el.addEventListener('mouseleave', () => document.body.classList.remove('cursor-hover'));
@@ -768,10 +629,11 @@
             document.querySelectorAll('section').forEach(s => s.classList.remove('active'));
             document.querySelectorAll('.nav-menu a').forEach(l => l.classList.remove('active'));
             const target = document.getElementById(id);
-            target.classList.add('active');
-            
-            const elements = target.querySelectorAll('.rise');
-            elements.forEach(el => { el.style.animation = 'none'; el.offsetHeight; el.style.animation = null; });
+            if(target) {
+                target.classList.add('active');
+                const elements = target.querySelectorAll('.rise');
+                elements.forEach(el => { el.style.animation = 'none'; el.offsetHeight; el.style.animation = null; });
+            }
 
             const link = document.getElementById('link-' + id);
             if(link) link.classList.add('active');
@@ -782,6 +644,19 @@
             document.body.classList.toggle('light-mode');
             const icon = document.querySelector('#theme-toggle i');
             icon.className = document.body.classList.contains('light-mode') ? 'fas fa-sun' : 'fas fa-moon';
+        }
+
+        // --- LIGHTBOX LOGIC ---
+        function openLightbox(src) {
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImg = document.getElementById('lightbox-img');
+            lightboxImg.src = src;
+            lightbox.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+        function closeLightbox() {
+            document.getElementById('lightbox').classList.remove('active');
+            document.body.style.overflow = 'auto';
         }
 
         // --- PROFESSIONAL BLOG LOGIC ---
@@ -943,4 +818,3 @@
     </script>
 </body>
 </html>
-
