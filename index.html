@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -210,13 +209,12 @@
         .cert-img-container img { width: 100%; height: 100%; object-fit: cover; opacity: 0.7; transition: 0.5s; }
         .cert-img-container:hover img { opacity: 1; transform: scale(1.1); }
 
-        /* --- LIGHTBOX --- */
+        /* --- LIGHTBOX (Images) --- */
         #lightbox {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: rgba(0,0,0,0.95); z-index: 50000;
             display: none; align-items: center; justify-content: center;
-            opacity: 0; transition: opacity 0.4s;
-            cursor: zoom-out;
+            opacity: 0; transition: opacity 0.4s; cursor: zoom-out;
         }
         #lightbox.active { display: flex; opacity: 1; }
         #lightbox img { max-width: 90%; max-height: 90vh; border: 2px solid var(--gold); box-shadow: 0 0 50px rgba(197, 160, 89, 0.2); transform: scale(0.9); transition: transform 0.4s; }
@@ -224,7 +222,7 @@
         #lightbox-close { position: absolute; top: 30px; right: 30px; font-size: 3rem; color: var(--gold); cursor: pointer; transition: 0.3s; }
         #lightbox-close:hover { transform: rotate(90deg); color: #fff; }
 
-        /* --- BLOG --- */
+        /* --- BLOG CARDS --- */
         .blog-card {
             background: var(--surface); border: 1px solid var(--gold-glow);
             transition: 0.4s; position: relative; overflow: hidden;
@@ -232,27 +230,41 @@
         }
         .blog-card:hover { border-color: var(--gold); transform: translateY(-5px); box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
         
-        /* ADMIN CONTROL: Hidden by default */
         .admin-controls { display: none; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--gold-glow); padding-bottom: 20px; }
 
-        /* --- LOGIN & EDITOR MODALS --- */
+        /* --- MODALS (Login, Editor, Reader) --- */
         .overlay-modal {
-            position: fixed; inset: 0; background: rgba(5, 5, 6, 0.98);
-            z-index: 5000; display: none; opacity: 0; transition: opacity 0.4s ease;
-            padding: 40px; overflow-y: auto; backdrop-filter: blur(10px);
+            position: fixed; inset: 0; background: rgba(5, 5, 6, 0.99);
+            z-index: 6000; display: none; opacity: 0; transition: opacity 0.4s ease;
+            overflow-y: auto; backdrop-filter: blur(15px);
         }
         .overlay-modal.active { display: block; opacity: 1; }
         
+        /* Auth & Editor Modal */
         .modal-container {
-            max-width: 500px; margin: 50px auto;
+            max-width: 500px; margin: 50px auto; padding: 40px;
             animation: slideUp 0.5s cubic-bezier(0.2, 1, 0.3, 1);
-            background: var(--surface); border: 1px solid var(--gold); padding: 40px;
+            background: var(--surface); border: 1px solid var(--gold);
         }
-        .editor-container { max-width: 900px; margin: 0 auto; animation: slideUp 0.5s; }
+        .editor-container { max-width: 900px; margin: 50px auto; padding: 40px; background: var(--surface); border: 1px solid var(--gold); animation: slideUp 0.5s; }
+        
+        /* READER MODAL (The Professional Window) */
+        .reader-container {
+            max-width: 800px; margin: 0 auto; min-height: 100vh;
+            background: var(--bg-deep); border-left: 1px solid var(--gold-glow); border-right: 1px solid var(--gold-glow);
+            padding: 60px 40px; box-shadow: 0 0 100px rgba(0,0,0,0.8);
+            animation: slideUp 0.5s;
+        }
+        .reader-hero { width: 100%; height: 350px; overflow: hidden; margin-bottom: 40px; border-bottom: 1px solid var(--gold); position: relative; }
+        .reader-hero img { width: 100%; height: 100%; object-fit: cover; }
+        .reader-meta { font-family: 'Cinzel'; font-size: 0.8rem; color: var(--gold); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 15px; }
+        .reader-title { font-family: 'Cinzel'; font-size: 2.5rem; line-height: 1.2; margin-bottom: 30px; color: var(--text-primary); }
+        .reader-body { font-family: 'Lora'; font-size: 1.2rem; line-height: 2; color: #ccc; white-space: pre-wrap; }
+        
         @keyframes slideUp { from { transform: translateY(50px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
 
         .modal-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; }
-        .input-group label { display: block; color: var(--gold); font-family: 'Cinzel'; font-size: 0.8rem; margin-bottom: 10px; letter-spacing: 1px; }
+        
         .auth-input, .editor-input {
             width: 100%; background: rgba(255,255,255,0.03); border: 1px solid var(--grid-line);
             padding: 15px; color: #fff; font-family: 'Inter'; font-size: 1rem; transition: 0.3s; margin-bottom: 20px;
@@ -282,6 +294,7 @@
             nav { padding: 15px 5%; }
             .nav-menu { display: none; }
             h1 { font-size: 3rem !important; }
+            .reader-container { padding: 40px 20px; }
         }
     </style>
 </head>
@@ -492,7 +505,7 @@
             <div class="gold-divider rise d2"></div>
             
             <div class="admin-controls rise d3">
-                <p style="color: var(--text-secondary); font-family: 'Cinzel';"><i class="fas fa-lock-open" style="color:var(--gold)"></i> Admin Mode Active</p>
+                <p style="color: var(--text-secondary); font-family: 'Cinzel';"><i class="fas fa-lock-open" style="color:var(--gold)"></i> Admin Mode</p>
                 <button class="ea-btn" onclick="openEditor()">+ Draft New Insight</button>
             </div>
 
@@ -535,7 +548,6 @@
                 <button onclick="closeAuth()" style="background:none; border:none; color: var(--text-secondary); font-size: 2rem; cursor: pointer;">&times;</button>
             </div>
             <p style="color: var(--text-secondary); margin-bottom: 20px;">Identify yourself to access restricted protocols.</p>
-            
             <div class="input-group">
                 <label>Email Address</label>
                 <input type="email" id="auth-email" class="auth-input" placeholder="user@example.com">
@@ -551,49 +563,59 @@
 
     <div id="blog-editor-overlay" class="overlay-modal">
         <div class="editor-container">
-            <div class="modal-container" style="max-width: 900px;">
-                <div class="modal-header">
-                    <h2 style="margin:0; font-size: 1.5rem;">New Research Entry</h2>
-                    <button onclick="closeEditor()" style="background:none; border:none; color: var(--text-secondary); font-size: 2rem; cursor: pointer;">&times;</button>
-                </div>
-
-                <div class="editor-grid">
-                    <div class="left-col">
-                        <div class="input-group" style="margin-bottom: 20px;">
-                            <label>Title of Insight</label>
-                            <input type="text" id="new-title" class="editor-input" placeholder="e.g. The Ethics of Nanotechnology">
-                        </div>
-                        <div class="input-group" style="margin-bottom: 20px;">
-                            <label>Category / Tag</label>
-                            <input type="text" id="new-category" class="editor-input" placeholder="e.g. Science, Philosophy, Code">
-                        </div>
-                        <div class="input-group">
-                            <label>External Reference Link</label>
-                            <input type="text" id="new-link" class="editor-input" placeholder="https://...">
-                        </div>
+            <div class="modal-header">
+                <h2 style="margin:0; font-size: 1.5rem;" id="editor-title">New Research Entry</h2>
+                <button onclick="closeEditor()" style="background:none; border:none; color: var(--text-secondary); font-size: 2rem; cursor: pointer;">&times;</button>
+            </div>
+            <div class="editor-grid">
+                <div class="left-col">
+                    <div class="input-group" style="margin-bottom: 20px;">
+                        <label>Title of Insight</label>
+                        <input type="text" id="new-title" class="editor-input" placeholder="e.g. The Ethics of Nanotechnology">
                     </div>
-                    
-                    <div class="right-col">
-                        <div class="input-group" style="height: 100%;">
-                            <label>Cover Visual</label>
-                            <input type="file" id="new-image" accept="image/*" style="display:none;" onchange="previewImage(this)">
-                            <div class="image-upload-box" onclick="document.getElementById('new-image').click()">
-                                <i class="fas fa-image" style="font-size: 2rem; color: var(--gold); margin-bottom: 10px;"></i>
-                                <span style="color: var(--text-secondary); font-size: 0.8rem;" id="img-preview-text">Click to Upload</span>
-                                <img id="img-preview" style="max-width: 100%; max-height: 100px; display: none; margin-top: 10px;">
-                            </div>
+                    <div class="input-group" style="margin-bottom: 20px;">
+                        <label>Category / Tag</label>
+                        <input type="text" id="new-category" class="editor-input" placeholder="e.g. Science, Philosophy, Code">
+                    </div>
+                    <div class="input-group">
+                        <label>External Reference Link (Optional)</label>
+                        <input type="text" id="new-link" class="editor-input" placeholder="https://...">
+                    </div>
+                </div>
+                <div class="right-col">
+                    <div class="input-group" style="height: 100%;">
+                        <label>Cover Visual</label>
+                        <input type="file" id="new-image" accept="image/*" style="display:none;" onchange="previewImage(this)">
+                        <div class="image-upload-box" onclick="document.getElementById('new-image').click()">
+                            <i class="fas fa-image" style="font-size: 2rem; color: var(--gold); margin-bottom: 10px;"></i>
+                            <span style="color: var(--text-secondary); font-size: 0.8rem;" id="img-preview-text">Click to Upload</span>
+                            <img id="img-preview" style="max-width: 100%; max-height: 100px; display: none; margin-top: 10px;">
                         </div>
                     </div>
                 </div>
+            </div>
+            <div class="input-group">
+                <label>Abstract / Main Content</label>
+                <textarea id="new-desc" class="editor-input editor-textarea" placeholder="Write your thoughts here..."></textarea>
+            </div>
+            <div style="text-align: right; margin-top: 30px;">
+                <button class="ea-btn" onclick="saveBlog()" style="padding: 15px 50px; background: var(--bg-deep);">PUBLISH TO ARCHIVE</button>
+            </div>
+        </div>
+    </div>
 
-                <div class="input-group">
-                    <label>Abstract / Main Content</label>
-                    <textarea id="new-desc" class="editor-input editor-textarea" placeholder="Write your thoughts here..."></textarea>
-                </div>
-
-                <div style="text-align: right; margin-top: 30px;">
-                    <button class="ea-btn" onclick="saveBlog()" style="padding: 15px 50px; background: var(--bg-deep);">PUBLISH TO ARCHIVE</button>
-                </div>
+    <div id="reader-overlay" class="overlay-modal">
+        <div class="reader-container">
+            <button onclick="closeReader()" style="position:fixed; top:30px; right:30px; background:none; border:none; color: var(--gold); font-size: 3rem; cursor: pointer; z-index: 100;">&times;</button>
+            
+            <div class="reader-hero" id="read-hero">
+                <img id="read-img" src="">
+            </div>
+            <div style="max-width: 700px; margin: 0 auto;">
+                <div class="reader-meta" id="read-meta"></div>
+                <h1 class="reader-title" id="read-title"></h1>
+                <div class="gold-divider" style="width: 100px; margin-bottom: 40px;"></div>
+                <div class="reader-body" id="read-body"></div>
             </div>
         </div>
     </div>
@@ -601,12 +623,13 @@
     <script>
         // --- CONSTANTS ---
         const ADMIN_EMAIL = "elbekaliyev2010@gmail.com";
+        let editingId = null; // Global variable to track if editing
         
         // --- PRELOADER ---
         window.addEventListener('load', () => {
             const preloader = document.getElementById('preloader');
             setTimeout(() => { preloader.style.opacity = '0'; preloader.style.visibility = 'hidden'; }, 1500);
-            checkLoginStatus(); // Check if user is logged in on load
+            checkLoginStatus(); 
         });
 
         // --- SCROLL & CURSOR ---
@@ -627,7 +650,6 @@
         // --- AUTHENTICATION LOGIC ---
         function openAuth() {
             if(localStorage.getItem('ea_user_email')) {
-                // If already logged in, this button acts as Logout
                 if(confirm("Terminate session?")) {
                     localStorage.removeItem('ea_user_email');
                     window.location.reload();
@@ -646,11 +668,11 @@
             if (!email || !pass) {
                 msg.style.display = "block"; msg.innerText = "Credentials required."; return;
             }
-
             // SIMULATED LOGIN
             localStorage.setItem('ea_user_email', email);
             closeAuth();
             checkLoginStatus();
+            loadBlogs(); // Reload blogs to show/hide admin buttons
             alert("Welcome back, User.");
         }
 
@@ -661,8 +683,6 @@
 
             if (userEmail) {
                 authBtn.innerText = "LOGOUT";
-                
-                // ADMIN CHECK: Only show controls if email matches specific string
                 if (userEmail === ADMIN_EMAIL) {
                     adminPanel.style.display = 'flex';
                 } else {
@@ -697,8 +717,69 @@
         // --- BLOG LOGIC ---
         document.addEventListener('DOMContentLoaded', loadBlogs);
         
-        function openEditor() { document.getElementById('blog-editor-overlay').classList.add('active'); document.body.style.overflow = 'hidden'; }
+        // EDITOR
+        function openEditor(id = null) { 
+            document.getElementById('blog-editor-overlay').classList.add('active'); 
+            document.body.style.overflow = 'hidden'; 
+            
+            if (id) {
+                // EDIT MODE
+                editingId = id;
+                document.getElementById('editor-title').innerText = "Edit Entry";
+                const posts = JSON.parse(localStorage.getItem('ea_portfolio_blogs')) || [];
+                const post = posts.find(p => p.id === id);
+                if (post) {
+                    document.getElementById('new-title').value = post.title;
+                    document.getElementById('new-category').value = post.category;
+                    document.getElementById('new-desc').value = post.desc;
+                    document.getElementById('new-link').value = post.link;
+                    if(post.img) {
+                        document.getElementById('img-preview').src = post.img;
+                        document.getElementById('img-preview').style.display = 'block';
+                        document.getElementById('img-preview-text').style.display = 'none';
+                    }
+                }
+            } else {
+                // NEW MODE
+                editingId = null;
+                document.getElementById('editor-title').innerText = "New Research Entry";
+                // Clear inputs
+                document.getElementById('new-title').value = '';
+                document.getElementById('new-category').value = '';
+                document.getElementById('new-desc').value = '';
+                document.getElementById('new-link').value = '';
+                document.getElementById('new-image').value = '';
+                document.getElementById('img-preview').style.display = 'none';
+                document.getElementById('img-preview-text').style.display = 'block';
+            }
+        }
+        
         function closeEditor() { document.getElementById('blog-editor-overlay').classList.remove('active'); document.body.style.overflow = 'auto'; }
+
+        // READER
+        function openReader(id) {
+            const posts = JSON.parse(localStorage.getItem('ea_portfolio_blogs')) || [];
+            const post = posts.find(p => p.id === id);
+            if(!post) return;
+
+            document.getElementById('read-title').innerText = post.title;
+            document.getElementById('read-meta').innerText = `${post.category} • ${new Date(post.id).toLocaleDateString()}`;
+            document.getElementById('read-body').innerText = post.desc;
+            
+            const hero = document.getElementById('read-hero');
+            const img = document.getElementById('read-img');
+            
+            if (post.img) {
+                hero.style.display = 'block';
+                img.src = post.img;
+            } else {
+                hero.style.display = 'none';
+            }
+
+            document.getElementById('reader-overlay').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+        function closeReader() { document.getElementById('reader-overlay').classList.remove('active'); document.body.style.overflow = 'auto'; }
 
         function previewImage(input) {
             if (input.files && input.files[0]) {
@@ -721,33 +802,43 @@
 
             if(!title || !desc) { alert("Title and Content are required."); return; }
 
-            const save = (img) => {
-                const newPost = { 
-                    id: Date.now(), 
-                    title, desc, 
-                    category: category || "General", 
-                    link: link || "#", 
-                    img 
-                };
+            const finalizeSave = (imgData) => {
                 let posts = JSON.parse(localStorage.getItem('ea_portfolio_blogs')) || [];
-                posts.unshift(newPost);
+                
+                if (editingId) {
+                    // Update Existing
+                    const index = posts.findIndex(p => p.id === editingId);
+                    if(index !== -1) {
+                        posts[index] = {
+                            ...posts[index],
+                            title, desc, 
+                            category: category || "General", 
+                            link: link || "#", 
+                            img: imgData || posts[index].img // Keep old image if no new one
+                        };
+                    }
+                } else {
+                    // Create New
+                    const newPost = { 
+                        id: Date.now(), 
+                        title, desc, 
+                        category: category || "General", 
+                        link: link || "#", 
+                        img: imgData
+                    };
+                    posts.unshift(newPost);
+                }
+
                 localStorage.setItem('ea_portfolio_blogs', JSON.stringify(posts));
-                
-                // Reset form
-                document.getElementById('new-title').value = '';
-                document.getElementById('new-desc').value = '';
-                document.getElementById('new-image').value = '';
-                document.getElementById('img-preview').style.display = 'none';
-                document.getElementById('img-preview-text').style.display = 'block';
-                
-                closeEditor(); loadBlogs();
+                closeEditor(); 
+                loadBlogs();
             };
 
             if(fileInput.files[0]) {
                 const reader = new FileReader();
-                reader.onload = (e) => save(e.target.result);
+                reader.onload = (e) => finalizeSave(e.target.result);
                 reader.readAsDataURL(fileInput.files[0]);
-            } else { save(null); }
+            } else { finalizeSave(null); }
         }
 
         function loadBlogs() {
@@ -766,9 +857,12 @@
                     ? `<div style="height: 180px; overflow: hidden;"><img src="${post.img}" style="width:100%; height:100%; object-fit:cover; transition: 0.5s;"></div>` 
                     : `<div style="height: 10px; background: var(--gold-glow);"></div>`;
 
-                // DELETE BUTTON: Only visible if Admin
-                const deleteBtn = (userEmail === ADMIN_EMAIL) 
-                    ? `<button onclick="deletePost(${post.id})" style="background:none; border:none; color:rgba(255,0,0,0.5); cursor:pointer;"><i class="fas fa-trash"></i></button>`
+                // ADMIN BUTTONS: Only visible if Admin
+                const adminBtns = (userEmail === ADMIN_EMAIL) 
+                    ? `<div>
+                         <button onclick="openEditor(${post.id})" style="background:none; border:none; color:var(--gold); cursor:pointer; margin-right:10px;"><i class="fas fa-pen"></i></button>
+                         <button onclick="deletePost(${post.id})" style="background:none; border:none; color:rgba(255,0,0,0.5); cursor:pointer;"><i class="fas fa-trash"></i></button>
+                       </div>`
                     : ``;
 
                 container.innerHTML += `
@@ -777,13 +871,13 @@
                     <div style="padding: 25px; display: flex; flex-direction: column; height: 100%;">
                         <div style="display:flex; justify-content:space-between; margin-bottom: 10px;">
                             <span style="color:var(--gold); font-size:0.75rem; font-family:'Cinzel'; text-transform:uppercase; letter-spacing:1px;">${post.category}</span>
-                            ${deleteBtn}
+                            ${adminBtns}
                         </div>
                         <h3 style="font-size: 1.2rem; margin-bottom: 15px; font-family: 'Cinzel';">${post.title}</h3>
                         <p style="color:var(--text-secondary); font-size: 0.95rem; line-height: 1.6; margin-bottom: 20px; flex-grow: 1;">
-                            ${post.desc.substring(0, 120)}...
+                            ${post.desc.substring(0, 100)}...
                         </p>
-                        <a href="${post.link}" target="_blank" class="ea-btn" style="text-align:center; font-size: 0.8rem;">ACCESS FILE</a>
+                        <button onclick="openReader(${post.id})" class="ea-btn" style="text-align:center; font-size: 0.8rem;">READ INSIGHT</button>
                     </div>
                 </div>`;
             });
