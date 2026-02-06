@@ -6,7 +6,6 @@
     <title>Elbek Aliyev | Future Scientist & Developer</title>
     
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Lora:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
-    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css">
 
@@ -72,7 +71,7 @@
         @keyframes gridMove { 0% { background-position: 0 0; } 100% { background-position: 0 60px; } }
         #particle-canvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; opacity: 0.3; pointer-events: none; }
 
-        /* --- NEW MAGNETIC CURSOR --- */
+        /* --- CURSOR --- */
         #cursor-dot { 
             width: 8px; height: 8px; background: var(--gold); 
             position: fixed; border-radius: 50%; z-index: 10000; 
@@ -222,13 +221,25 @@
         #lightbox-close { position: absolute; top: 30px; right: 30px; font-size: 3rem; color: var(--gold); cursor: pointer; transition: 0.3s; }
         #lightbox-close:hover { transform: rotate(90deg); color: #fff; }
 
-        /* --- BLOG CARDS --- */
+        /* --- BLOG CARDS (INTERACTIVE) --- */
         .blog-card {
             background: var(--surface); border: 1px solid var(--gold-glow);
-            transition: 0.4s; position: relative; overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94); 
+            position: relative; overflow: hidden;
             display: flex; flex-direction: column;
+            cursor: pointer; /* Makes it look clickable */
         }
-        .blog-card:hover { border-color: var(--gold); transform: translateY(-5px); box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+        .blog-card:hover { 
+            border-color: var(--gold); 
+            transform: translateY(-8px) scale(1.02); 
+            box-shadow: 0 15px 40px rgba(197, 160, 89, 0.15); 
+        }
+        .blog-card::before {
+            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(to bottom, transparent 80%, rgba(197, 160, 89, 0.1) 100%);
+            opacity: 0; transition: 0.3s;
+        }
+        .blog-card:hover::before { opacity: 1; }
         
         .admin-controls { display: none; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--gold-glow); padding-bottom: 20px; }
 
@@ -248,18 +259,74 @@
         }
         .editor-container { max-width: 900px; margin: 50px auto; padding: 40px; background: var(--surface); border: 1px solid var(--gold); animation: slideUp 0.5s; }
         
-        /* READER MODAL (The Professional Window) */
+        /* --- BEAUTIFUL READER WINDOW (NEW DESIGN) --- */
         .reader-container {
-            max-width: 800px; margin: 0 auto; min-height: 100vh;
-            background: var(--bg-deep); border-left: 1px solid var(--gold-glow); border-right: 1px solid var(--gold-glow);
-            padding: 60px 40px; box-shadow: 0 0 100px rgba(0,0,0,0.8);
-            animation: slideUp 0.5s;
+            max-width: 850px; margin: 30px auto; min-height: 90vh;
+            background: rgba(10, 10, 12, 0.95); 
+            border: 1px solid var(--gold);
+            padding: 0; /* Content padding moved inside */
+            box-shadow: 0 0 60px rgba(197, 160, 89, 0.1);
+            animation: modalPop 0.6s cubic-bezier(0.19, 1, 0.22, 1);
+            position: relative;
+            border-radius: 4px;
         }
-        .reader-hero { width: 100%; height: 350px; overflow: hidden; margin-bottom: 40px; border-bottom: 1px solid var(--gold); position: relative; }
+
+        @keyframes modalPop {
+            0% { transform: scale(0.9) translateY(50px); opacity: 0; }
+            100% { transform: scale(1) translateY(0); opacity: 1; }
+        }
+
+        .reader-hero { 
+            width: 100%; height: 400px; overflow: hidden; 
+            border-bottom: 1px solid var(--gold-glow); 
+            position: relative; 
+        }
         .reader-hero img { width: 100%; height: 100%; object-fit: cover; }
-        .reader-meta { font-family: 'Cinzel'; font-size: 0.8rem; color: var(--gold); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 15px; }
-        .reader-title { font-family: 'Cinzel'; font-size: 2.5rem; line-height: 1.2; margin-bottom: 30px; color: var(--text-primary); }
-        .reader-body { font-family: 'Lora'; font-size: 1.2rem; line-height: 2; color: #ccc; white-space: pre-wrap; }
+        .reader-hero::after {
+            content: ''; position: absolute; inset: 0;
+            background: linear-gradient(to top, var(--bg-deep) 0%, transparent 100%);
+        }
+
+        .reader-content-box { padding: 50px; position: relative; top: -50px; }
+        
+        .reader-meta-pill {
+            display: inline-block;
+            background: rgba(197, 160, 89, 0.1);
+            border: 1px solid var(--gold);
+            color: var(--gold);
+            padding: 8px 16px;
+            font-family: 'Cinzel'; font-size: 0.75rem; letter-spacing: 2px;
+            border-radius: 50px;
+            margin-bottom: 25px;
+            backdrop-filter: blur(5px);
+        }
+
+        .reader-title { 
+            font-family: 'Cinzel'; font-size: 3rem; line-height: 1.2; 
+            margin-bottom: 30px; color: var(--text-primary); 
+            text-shadow: 0 5px 15px rgba(0,0,0,0.5);
+        }
+        
+        .reader-body { 
+            font-family: 'Lora'; font-size: 1.25rem; line-height: 2; 
+            color: #d1d1d1; white-space: pre-wrap; 
+            border-left: 2px solid var(--gold-glow);
+            padding-left: 30px;
+        }
+
+        /* Close Button for Reader */
+        .close-reader-btn {
+            position: absolute; top: 20px; right: 20px;
+            width: 50px; height: 50px;
+            background: rgba(0,0,0,0.5);
+            border: 1px solid var(--gold);
+            color: var(--gold);
+            border-radius: 50%;
+            display: flex; justify-content: center; align-items: center;
+            font-size: 1.5rem; cursor: pointer;
+            z-index: 100; transition: 0.3s;
+        }
+        .close-reader-btn:hover { background: var(--gold); color: #000; transform: rotate(90deg); }
         
         @keyframes slideUp { from { transform: translateY(50px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
 
@@ -294,7 +361,9 @@
             nav { padding: 15px 5%; }
             .nav-menu { display: none; }
             h1 { font-size: 3rem !important; }
-            .reader-container { padding: 40px 20px; }
+            .reader-container { padding: 0; max-width: 100%; min-height: 100vh; margin: 0; }
+            .reader-content-box { padding: 30px 20px; }
+            .reader-title { font-size: 2rem; }
         }
     </style>
 </head>
@@ -508,6 +577,10 @@
                 <p style="color: var(--text-secondary); font-family: 'Cinzel';"><i class="fas fa-lock-open" style="color:var(--gold)"></i> Admin Mode</p>
                 <button class="ea-btn" onclick="openEditor()">+ Draft New Insight</button>
             </div>
+            
+            <p id="public-notice" class="rise d3" style="color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 20px;">
+                <i class="fas fa-satellite-dish" style="color:var(--gold)"></i> Broadcasting Latest Transmissions...
+            </p>
 
             <div id="blog-container" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 30px; margin-top: 40px;">
                 </div>
@@ -606,15 +679,14 @@
 
     <div id="reader-overlay" class="overlay-modal">
         <div class="reader-container">
-            <button onclick="closeReader()" style="position:fixed; top:30px; right:30px; background:none; border:none; color: var(--gold); font-size: 3rem; cursor: pointer; z-index: 100;">&times;</button>
+            <button class="close-reader-btn" onclick="closeReader()">&times;</button>
             
             <div class="reader-hero" id="read-hero">
                 <img id="read-img" src="">
             </div>
-            <div style="max-width: 700px; margin: 0 auto;">
-                <div class="reader-meta" id="read-meta"></div>
+            <div class="reader-content-box">
+                <span class="reader-meta-pill" id="read-meta"></span>
                 <h1 class="reader-title" id="read-title"></h1>
-                <div class="gold-divider" style="width: 100px; margin-bottom: 40px;"></div>
                 <div class="reader-body" id="read-body"></div>
             </div>
         </div>
@@ -623,8 +695,27 @@
     <script>
         // --- CONSTANTS ---
         const ADMIN_EMAIL = "elbekaliyev2010@gmail.com";
-        let editingId = null; // Global variable to track if editing
+        let editingId = null;
         
+        // --- PUBLIC BLOGS DATA (HARDCODED FOR EVERYONE TO SEE) ---
+        // To add a blog for everyone, paste it into this array!
+        const PUBLIC_BLOGS = [
+            {
+                id: 1,
+                title: "The Ethics of Nanotechnology",
+                category: "Philosophy",
+                img: "https://images.unsplash.com/photo-1532094349884-543bc11b234d?auto=format&fit=crop&q=80&w=1000",
+                desc: "As we stand on the precipice of the atomic revolution, we must ask ourselves not just what we *can* build, but what we *should*. Nanotechnology offers the promise of curing diseases and reversing climate change (like my EcoUZ-GPT project aims to assist with thermal dynamics), but it also introduces the 'Gray Goo' scenario. \n\nScience without philosophy is a ship without a compass. In my journey through the Presidential School, I've learned that every line of code has a moral weight."
+            },
+            {
+                id: 2,
+                title: "Python in 2026: Beyond Automation",
+                category: "Code",
+                img: "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&q=80&w=1000",
+                desc: "Python has evolved. It is no longer just a scripting language; it is the glue holding together our AI infrastructure. With Gemini 2.5 integration, I can now write scripts that don't just execute tasks, but 'reason' through them.\n\nMy recent work with Robocontest algorithms has shown me that efficiency isn't just about Big-O notation anymore; it's about energy efficiency in the age of massive computing."
+            }
+        ];
+
         // --- PRELOADER ---
         window.addEventListener('load', () => {
             const preloader = document.getElementById('preloader');
@@ -672,7 +763,7 @@
             localStorage.setItem('ea_user_email', email);
             closeAuth();
             checkLoginStatus();
-            loadBlogs(); // Reload blogs to show/hide admin buttons
+            loadBlogs(); 
             alert("Welcome back, User.");
         }
 
@@ -723,16 +814,20 @@
             document.body.style.overflow = 'hidden'; 
             
             if (id) {
-                // EDIT MODE
+                // EDIT MODE (Gets from local storage or public array)
                 editingId = id;
                 document.getElementById('editor-title').innerText = "Edit Entry";
-                const posts = JSON.parse(localStorage.getItem('ea_portfolio_blogs')) || [];
-                const post = posts.find(p => p.id === id);
+                
+                const localPosts = JSON.parse(localStorage.getItem('ea_portfolio_blogs')) || [];
+                // Merge lists to find the post
+                const allPosts = [...PUBLIC_BLOGS, ...localPosts];
+                const post = allPosts.find(p => p.id === id);
+                
                 if (post) {
                     document.getElementById('new-title').value = post.title;
                     document.getElementById('new-category').value = post.category;
                     document.getElementById('new-desc').value = post.desc;
-                    document.getElementById('new-link').value = post.link;
+                    document.getElementById('new-link').value = post.link || "";
                     if(post.img) {
                         document.getElementById('img-preview').src = post.img;
                         document.getElementById('img-preview').style.display = 'block';
@@ -743,7 +838,6 @@
                 // NEW MODE
                 editingId = null;
                 document.getElementById('editor-title').innerText = "New Research Entry";
-                // Clear inputs
                 document.getElementById('new-title').value = '';
                 document.getElementById('new-category').value = '';
                 document.getElementById('new-desc').value = '';
@@ -756,14 +850,20 @@
         
         function closeEditor() { document.getElementById('blog-editor-overlay').classList.remove('active'); document.body.style.overflow = 'auto'; }
 
-        // READER
+        // NEW READER FUNCTION
         function openReader(id) {
-            const posts = JSON.parse(localStorage.getItem('ea_portfolio_blogs')) || [];
-            const post = posts.find(p => p.id === id);
+            const localPosts = JSON.parse(localStorage.getItem('ea_portfolio_blogs')) || [];
+            const allPosts = [...PUBLIC_BLOGS, ...localPosts];
+            const post = allPosts.find(p => p.id === id);
+            
             if(!post) return;
 
             document.getElementById('read-title').innerText = post.title;
-            document.getElementById('read-meta').innerText = `${post.category} • ${new Date(post.id).toLocaleDateString()}`;
+            // Format date if ID is timestamp, otherwise use "Pinned"
+            let dateStr = "Pinned Archive";
+            if (post.id > 100000) dateStr = new Date(post.id).toLocaleDateString();
+            
+            document.getElementById('read-meta').innerText = `${post.category} • ${dateStr}`;
             document.getElementById('read-body').innerText = post.desc;
             
             const hero = document.getElementById('read-hero');
@@ -806,7 +906,13 @@
                 let posts = JSON.parse(localStorage.getItem('ea_portfolio_blogs')) || [];
                 
                 if (editingId) {
-                    // Update Existing
+                    // Check if it's a public blog (ID < 100) - cannot edit public blogs in local storage easily
+                    if(editingId < 100) {
+                        alert("Note: You cannot permanently edit public/hardcoded blogs from here. You must edit the HTML code directly.");
+                        return;
+                    }
+
+                    // Update Existing Local Post
                     const index = posts.findIndex(p => p.id === editingId);
                     if(index !== -1) {
                         posts[index] = {
@@ -814,7 +920,7 @@
                             title, desc, 
                             category: category || "General", 
                             link: link || "#", 
-                            img: imgData || posts[index].img // Keep old image if no new one
+                            img: imgData || posts[index].img 
                         };
                     }
                 } else {
@@ -843,47 +949,56 @@
 
         function loadBlogs() {
             const container = document.getElementById('blog-container');
-            const posts = JSON.parse(localStorage.getItem('ea_portfolio_blogs')) || [];
+            const localPosts = JSON.parse(localStorage.getItem('ea_portfolio_blogs')) || [];
+            
+            // Combine PUBLIC (hardcoded) and LOCAL (personal) posts
+            const allPosts = [...localPosts, ...PUBLIC_BLOGS]; // Newest local posts first
             const userEmail = localStorage.getItem('ea_user_email');
             
-            if (posts.length === 0) {
+            container.innerHTML = "";
+            
+            if (allPosts.length === 0) {
                 container.innerHTML = "<p style='color:var(--text-secondary); grid-column: 1/-1; text-align:center;'>Archive is currently empty.</p>";
                 return;
             }
             
-            container.innerHTML = "";
-            posts.forEach(post => {
+            allPosts.forEach(post => {
                 const imgHTML = post.img 
-                    ? `<div style="height: 180px; overflow: hidden;"><img src="${post.img}" style="width:100%; height:100%; object-fit:cover; transition: 0.5s;"></div>` 
+                    ? `<div style="height: 200px; overflow: hidden;"><img src="${post.img}" style="width:100%; height:100%; object-fit:cover; transition: 0.5s;"></div>` 
                     : `<div style="height: 10px; background: var(--gold-glow);"></div>`;
 
                 // ADMIN BUTTONS: Only visible if Admin
+                // We use stopPropagation so clicking the delete button doesn't open the reader
                 const adminBtns = (userEmail === ADMIN_EMAIL) 
                     ? `<div>
-                         <button onclick="openEditor(${post.id})" style="background:none; border:none; color:var(--gold); cursor:pointer; margin-right:10px;"><i class="fas fa-pen"></i></button>
-                         <button onclick="deletePost(${post.id})" style="background:none; border:none; color:rgba(255,0,0,0.5); cursor:pointer;"><i class="fas fa-trash"></i></button>
+                         <button onclick="event.stopPropagation(); openEditor(${post.id})" style="background:none; border:none; color:var(--gold); cursor:pointer; margin-right:10px;"><i class="fas fa-pen"></i></button>
+                         <button onclick="event.stopPropagation(); deletePost(${post.id})" style="background:none; border:none; color:rgba(255,0,0,0.5); cursor:pointer;"><i class="fas fa-trash"></i></button>
                        </div>`
                     : ``;
 
                 container.innerHTML += `
-                <div class="blog-card tilt-card">
+                <div class="blog-card tilt-card" onclick="openReader(${post.id})">
                     ${imgHTML}
                     <div style="padding: 25px; display: flex; flex-direction: column; height: 100%;">
                         <div style="display:flex; justify-content:space-between; margin-bottom: 10px;">
                             <span style="color:var(--gold); font-size:0.75rem; font-family:'Cinzel'; text-transform:uppercase; letter-spacing:1px;">${post.category}</span>
                             ${adminBtns}
                         </div>
-                        <h3 style="font-size: 1.2rem; margin-bottom: 15px; font-family: 'Cinzel';">${post.title}</h3>
+                        <h3 style="font-size: 1.4rem; margin-bottom: 15px; font-family: 'Cinzel';">${post.title}</h3>
                         <p style="color:var(--text-secondary); font-size: 0.95rem; line-height: 1.6; margin-bottom: 20px; flex-grow: 1;">
-                            ${post.desc.substring(0, 100)}...
+                            ${post.desc.substring(0, 120)}...
                         </p>
-                        <button onclick="openReader(${post.id})" class="ea-btn" style="text-align:center; font-size: 0.8rem;">READ INSIGHT</button>
+                        <span style="font-size: 0.8rem; color: var(--gold); text-transform:uppercase; letter-spacing:1px;">Read Full Insight &rarr;</span>
                     </div>
                 </div>`;
             });
         }
         
         function deletePost(id) {
+            if (id < 100) {
+                alert("You cannot delete public hardcoded blogs via the interface. Please remove them from the HTML code.");
+                return;
+            }
             if(!confirm("Delete this entry?")) return;
             let posts = JSON.parse(localStorage.getItem('ea_portfolio_blogs')) || [];
             localStorage.setItem('ea_portfolio_blogs', JSON.stringify(posts.filter(p => p.id !== id)));
