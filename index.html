@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -85,7 +86,6 @@
             pointer-events: none; 
             transition: transform 0.2s ease, background-color 0.2s ease, border-color 0.2s ease;
         }
-        /* Hover State */
         body.cursor-hover #cursor-outline { 
             transform: scale(1.5); 
             background-color: rgba(197, 160, 89, 0.15); 
@@ -113,6 +113,9 @@
         .nav-menu a::after { content: ''; position: absolute; width: 0; height: 1px; bottom: -5px; left: 0; background-color: var(--gold); transition: width 0.3s; }
         .nav-menu a:hover::after, .nav-menu a.active::after { width: 100%; }
         .nav-menu a.active, .nav-menu a:hover { opacity: 1; color: var(--gold); }
+        
+        #auth-btn { font-family: 'Cinzel'; font-size: 0.7rem; background: transparent; border: 1px solid var(--gold); color: var(--gold); padding: 5px 15px; transition: 0.3s; letter-spacing: 1px; }
+        #auth-btn:hover { background: var(--gold); color: #000; }
         #theme-toggle { background: none; border: 1px solid var(--gold-glow); color: var(--gold); padding: 8px; border-radius: 50%; cursor: pointer; transition: 0.3s; }
         #theme-toggle:hover { background: var(--gold); color: #000; }
 
@@ -161,7 +164,7 @@
         .book-title { font-family: 'Cinzel'; color: #fff; font-size: 0.9rem; margin-bottom: 5px; text-shadow: 0 2px 5px rgba(0,0,0,0.8); }
         .book-author { font-family: 'Lora'; font-size: 0.7rem; color: #ccc; font-style: italic; }
 
-        /* --- PROJECT HERO VISUALS --- */
+        /* --- PROJECT HERO --- */
         .project-hero { background: var(--surface); border: 1px solid var(--gold-glow); display: grid; grid-template-columns: 1.2fr 1fr; overflow: hidden; margin-bottom: 50px; }
         .project-content { padding: 45px; }
         .project-visual { 
@@ -188,7 +191,7 @@
         .timeline-item:hover::before { background: var(--gold); transform: scale(1.3); }
         .year { color: var(--gold); font-family: 'Cinzel'; font-size: 0.9rem; margin-bottom: 5px; display: block; }
 
-        /* --- SOFTWARE GRID (UPDATED) --- */
+        /* --- SOFTWARE GRID --- */
         .software-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 30px; margin-top: 40px; }
         .soft-card {
             background: var(--surface); border: 1px solid var(--gold-glow); padding: 30px 15px;
@@ -197,7 +200,6 @@
         }
         .soft-card i { font-size: 2.5rem; color: var(--text-secondary); transition: 0.4s; }
         .soft-card h4 { font-family: 'Cinzel'; font-size: 0.8rem; color: var(--text-primary); margin-top: 10px; transition: 0.3s; letter-spacing: 1px; }
-        
         .soft-card:hover { transform: translateY(-10px); border-color: var(--gold); background: rgba(197, 160, 89, 0.05); box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
         .soft-card:hover i { color: var(--gold); transform: scale(1.1); }
         .soft-card:hover h4 { color: var(--gold); }
@@ -208,7 +210,7 @@
         .cert-img-container img { width: 100%; height: 100%; object-fit: cover; opacity: 0.7; transition: 0.5s; }
         .cert-img-container:hover img { opacity: 1; transform: scale(1.1); }
 
-        /* --- LIGHTBOX (For enlarging certificates) --- */
+        /* --- LIGHTBOX --- */
         #lightbox {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: rgba(0,0,0,0.95); z-index: 50000;
@@ -222,7 +224,7 @@
         #lightbox-close { position: absolute; top: 30px; right: 30px; font-size: 3rem; color: var(--gold); cursor: pointer; transition: 0.3s; }
         #lightbox-close:hover { transform: rotate(90deg); color: #fff; }
 
-        /* --- NEW BLOG / INSIGHTS STYLES --- */
+        /* --- BLOG --- */
         .blog-card {
             background: var(--surface); border: 1px solid var(--gold-glow);
             transition: 0.4s; position: relative; overflow: hidden;
@@ -230,31 +232,34 @@
         }
         .blog-card:hover { border-color: var(--gold); transform: translateY(-5px); box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
         
-        /* --- PROFESSIONAL EDITOR MODAL (CMS STYLE) --- */
-        #blog-editor-overlay {
+        /* ADMIN CONTROL: Hidden by default */
+        .admin-controls { display: none; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--gold-glow); padding-bottom: 20px; }
+
+        /* --- LOGIN & EDITOR MODALS --- */
+        .overlay-modal {
             position: fixed; inset: 0; background: rgba(5, 5, 6, 0.98);
             z-index: 5000; display: none; opacity: 0; transition: opacity 0.4s ease;
             padding: 40px; overflow-y: auto; backdrop-filter: blur(10px);
         }
-        #blog-editor-overlay.active { display: block; opacity: 1; }
+        .overlay-modal.active { display: block; opacity: 1; }
         
-        .editor-container {
-            max-width: 900px; margin: 0 auto;
+        .modal-container {
+            max-width: 500px; margin: 50px auto;
             animation: slideUp 0.5s cubic-bezier(0.2, 1, 0.3, 1);
+            background: var(--surface); border: 1px solid var(--gold); padding: 40px;
         }
+        .editor-container { max-width: 900px; margin: 0 auto; animation: slideUp 0.5s; }
         @keyframes slideUp { from { transform: translateY(50px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
 
-        .editor-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--gold); padding-bottom: 20px; margin-bottom: 30px; }
+        .modal-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; }
+        .input-group label { display: block; color: var(--gold); font-family: 'Cinzel'; font-size: 0.8rem; margin-bottom: 10px; letter-spacing: 1px; }
+        .auth-input, .editor-input {
+            width: 100%; background: rgba(255,255,255,0.03); border: 1px solid var(--grid-line);
+            padding: 15px; color: #fff; font-family: 'Inter'; font-size: 1rem; transition: 0.3s; margin-bottom: 20px;
+        }
+        .auth-input:focus, .editor-input:focus { border-color: var(--gold); outline: none; background: rgba(255,255,255,0.05); }
         
         .editor-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 40px; margin-bottom: 30px; }
-        
-        .input-group label { display: block; color: var(--gold); font-family: 'Cinzel'; font-size: 0.8rem; margin-bottom: 10px; letter-spacing: 1px; }
-        .editor-input {
-            width: 100%; background: rgba(255,255,255,0.03); border: 1px solid var(--grid-line);
-            padding: 15px; color: #fff; font-family: 'Inter'; font-size: 1rem; transition: 0.3s;
-        }
-        .editor-input:focus { border-color: var(--gold); outline: none; background: rgba(255,255,255,0.05); }
-        
         .image-upload-box {
             border: 2px dashed var(--gold-glow); height: 100%; min-height: 150px;
             display: flex; flex-direction: column; justify-content: center; align-items: center;
@@ -266,7 +271,6 @@
         .ea-btn { background: transparent; border: 1px solid var(--gold); color: var(--gold); padding: 12px 25px; font-family: 'Cinzel'; cursor: pointer; transition: 0.3s; margin: 5px; letter-spacing: 1px; text-decoration: none; display: inline-block; }
         .ea-btn:hover { background: var(--gold); color: #000; }
 
-        /* --- FOOTER --- */
         footer { padding: 50px 10%; text-align: center; border-top: 1px solid var(--gold-glow); background: var(--nav-bg); margin-top: 100px; }
         .footer-socials a { color: var(--text-secondary); margin: 0 15px; font-size: 1.2rem; transition: 0.3s; text-decoration: none; }
         .footer-socials a:hover { color: var(--gold); }
@@ -311,6 +315,7 @@
                 <li><a href="#" onclick="showSection('blog')" id="link-blog">Insights</a></li>
                 <li><a href="#" onclick="showSection('contact')" id="link-contact">Contact</a></li>
             </ul>
+            <button id="auth-btn" onclick="openAuth()">LOGIN</button>
             <button id="theme-toggle" onclick="toggleTheme()"><i class="fas fa-moon"></i></button>
         </div>
     </nav>
@@ -399,51 +404,15 @@
             <p class="rise d3" style="color: var(--text-secondary);">Tools and technologies I use to create, design, and code.</p>
             
             <div class="software-grid rise d4">
-                
-                <div class="soft-card">
-                    <i class="devicon-python-plain"></i>
-                    <h4>Python</h4>
-                </div>
-                
-                <div class="soft-card">
-                    <i class="devicon-photoshop-plain"></i>
-                    <h4>Photoshop</h4>
-                </div>
-                
-                <div class="soft-card">
-                    <i class="devicon-illustrator-plain"></i>
-                    <h4>Illustrator</h4>
-                </div>
-                
-                <div class="soft-card">
-                    <i class="fas fa-pen-nib"></i>
-                    <h4>Corel Draw</h4>
-                </div>
-
-                <div class="soft-card">
-                    <i class="devicon-canva-original"></i>
-                    <h4>Canva</h4>
-                </div>
-
-                <div class="soft-card">
-                    <i class="devicon-premierepro-plain"></i>
-                    <h4>Premiere Pro</h4>
-                </div>
-
-                <div class="soft-card">
-                    <i class="fas fa-film"></i>
-                    <h4>Capcut</h4>
-                </div>
-
-                <div class="soft-card">
-                    <i class="fas fa-cat"></i>
-                    <h4>Scratch</h4>
-                </div>
-
-                <div class="soft-card">
-                    <i class="fab fa-windows"></i>
-                    <h4>MS Office</h4>
-                </div>
+                <div class="soft-card"><i class="devicon-python-plain"></i><h4>Python</h4></div>
+                <div class="soft-card"><i class="devicon-photoshop-plain"></i><h4>Photoshop</h4></div>
+                <div class="soft-card"><i class="devicon-illustrator-plain"></i><h4>Illustrator</h4></div>
+                <div class="soft-card"><i class="fas fa-pen-nib"></i><h4>Corel Draw</h4></div>
+                <div class="soft-card"><i class="devicon-canva-original"></i><h4>Canva</h4></div>
+                <div class="soft-card"><i class="devicon-premierepro-plain"></i><h4>Premiere Pro</h4></div>
+                <div class="soft-card"><i class="fas fa-film"></i><h4>Capcut</h4></div>
+                <div class="soft-card"><i class="fas fa-cat"></i><h4>Scratch</h4></div>
+                <div class="soft-card"><i class="fab fa-windows"></i><h4>MS Office</h4></div>
             </div>
         </section>
 
@@ -455,227 +424,28 @@
             </p>
             
             <div class="library-shelf rise d4">
-                
-                <div class="book-container">
-                    <div class="book">
-                        <div class="book-front" style="background: linear-gradient(135deg, #2d5a27 0%, #1a3c17 100%);">
-                            <span class="book-title">Chinor</span>
-                            <span class="book-author">Asqad Muxtor</span>
-                        </div>
-                        <div class="book-spine" style="background: #1a3c17;"><span class="spine-text">CHINOR</span></div>
-                    </div>
-                </div>
-        
-                <div class="book-container">
-                    <div class="book">
-                        <div class="book-front" style="background: linear-gradient(135deg, #6b2c45 0%, #3e1222 100%);">
-                            <span class="book-title">Ufq</span>
-                            <span class="book-author">Said Ahmad</span>
-                        </div>
-                        <div class="book-spine" style="background: #3e1222;"><span class="spine-text">UFQ</span></div>
-                    </div>
-                </div>
-        
-                <div class="book-container">
-                    <div class="book">
-                        <div class="book-front" style="background: linear-gradient(135deg, #8c6a43 0%, #5d4020 100%);">
-                            <span class="book-title">Shumbola</span>
-                            <span class="book-author">G'afur G'ulom</span>
-                        </div>
-                        <div class="book-spine" style="background: #5d4020;"><span class="spine-text">SHUMBOLA</span></div>
-                    </div>
-                </div>
-        
-                <div class="book-container">
-                    <div class="book">
-                        <div class="book-front" style="background: linear-gradient(135deg, #556b2f 0%, #304212 100%);">
-                            <span class="book-title">Quyonlar<br>Saltanati</span>
-                            <span class="book-author">X. To'xtaboyev</span>
-                        </div>
-                        <div class="book-spine" style="background: #304212;"><span class="spine-text">TO'XTABOYEV</span></div>
-                    </div>
-                </div>
-        
-                <div class="book-container">
-                    <div class="book">
-                        <div class="book-front" style="background: linear-gradient(135deg, #0f1c3f 0%, #050a1a 100%);">
-                            <span class="book-title">Yulduzli<br>Tunlar</span>
-                            <span class="book-author">Pirimqul Qodirov</span>
-                        </div>
-                        <div class="book-spine" style="background: #050a1a;"><span class="spine-text">BABUR</span></div>
-                    </div>
-                </div>
-        
-                <div class="book-container">
-                    <div class="book">
-                        <div class="book-front" style="background: linear-gradient(135deg, #c79a57 0%, #8f6a35 100%); color: #000;">
-                            <span class="book-title" style="color:#2a1a08">Dunyoning<br>Ishlari</span>
-                            <span class="book-author" style="color:#2a1a08">O'. Hoshimov</span>
-                        </div>
-                        <div class="book-spine" style="background: #8f6a35;"><span class="spine-text" style="color:#000;">HOSHIMOV</span></div>
-                    </div>
-                </div>
-        
-                <div class="book-container">
-                    <div class="book">
-                        <div class="book-front" style="background: linear-gradient(135deg, #7a1e1e 0%, #4a0d0d 100%);">
-                            <span class="book-title">Mehrobdan<br>Chayon</span>
-                            <span class="book-author">Abdulla Qodiriy</span>
-                        </div>
-                        <div class="book-spine" style="background: #4a0d0d;"><span class="spine-text">QODIRIY</span></div>
-                    </div>
-                </div>
-        
-                <div class="book-container">
-                    <div class="book">
-                        <div class="book-front" style="background: linear-gradient(135deg, #d4a017 0%, #99700b 100%); color: #000;">
-                            <span class="book-title" style="color:#000">5 Bolali<br>Yigitcha</span>
-                            <span class="book-author" style="color:#333">X. To'xtaboyev</span>
-                        </div>
-                        <div class="book-spine" style="background: #99700b;"><span class="spine-text" style="color:#000;">5 BOLA</span></div>
-                    </div>
-                </div>
-        
-                <div class="book-container">
-                    <div class="book">
-                        <div class="book-front" style="background: linear-gradient(135deg, #81a8b8 0%, #466978 100%);">
-                            <span class="book-title">Oq Kema</span>
-                            <span class="book-author">Chingiz Aytmatov</span>
-                        </div>
-                        <div class="book-spine" style="background: #466978;"><span class="spine-text">AYTMATOV</span></div>
-                    </div>
-                </div>
-        
-                <div class="book-container">
-                    <div class="book">
-                        <div class="book-front" style="background: linear-gradient(135deg, #594d46 0%, #302824 100%);">
-                            <span class="book-title">Ot Kishnagan<br>Oqshom</span>
-                            <span class="book-author">Tog'ay Murod</span>
-                        </div>
-                        <div class="book-spine" style="background: #302824;"><span class="spine-text">TOG'AY</span></div>
-                    </div>
-                </div>
-        
-                <div class="book-container">
-                    <div class="book">
-                        <div class="book-front" style="background: linear-gradient(135deg, #4b0082 0%, #2e004f 100%);">
-                            <span class="book-title">Koinot<br>Javohiri</span>
-                            <span class="book-author">Sa'dulla Quronov</span>
-                        </div>
-                        <div class="book-spine" style="background: #2e004f;"><span class="spine-text">KOINOT</span></div>
-                    </div>
-                </div>
-        
-                <div class="book-container">
-                    <div class="book">
-                        <div class="book-front" style="background: linear-gradient(135deg, #ff4500 0%, #8b0000 100%);">
-                            <span class="book-title">Fahrenheit<br>451</span>
-                            <span class="book-author">Ray Bradbury</span>
-                        </div>
-                        <div class="book-spine" style="background: #8b0000;"><span class="spine-text">451</span></div>
-                    </div>
-                </div>
-        
-                <div class="book-container">
-                    <div class="book">
-                        <div class="book-front" style="background: linear-gradient(135deg, #708090 0%, #2f4f4f 100%);">
-                            <span class="book-title">All Quiet on<br>Western Front</span>
-                            <span class="book-author">E. M. Remarque</span>
-                        </div>
-                        <div class="book-spine" style="background: #2f4f4f;"><span class="spine-text">REMARQUE</span></div>
-                    </div>
-                </div>
-        
-                <div class="book-container">
-                    <div class="book">
-                        <div class="book-front" style="background: linear-gradient(135deg, #f0e68c 0%, #bdb76b 100%); color: #000;">
-                            <span class="book-title" style="color: #333;">The Little<br>Prince</span>
-                            <span class="book-author" style="color: #444;">Saint-Exupéry</span>
-                        </div>
-                        <div class="book-spine" style="background: #bdb76b;"><span class="spine-text" style="color:#000;">PRINCE</span></div>
-                    </div>
-                </div>
-        
-                <div class="book-container">
-                    <div class="book">
-                        <div class="book-front" style="background: linear-gradient(135deg, #00ced1 0%, #008b8b 100%);">
-                            <span class="book-title">Martin<br>Eden</span>
-                            <span class="book-author">Jack London</span>
-                        </div>
-                        <div class="book-spine" style="background: #008b8b;"><span class="spine-text">LONDON</span></div>
-                    </div>
-                </div>
-        
-                <div class="book-container">
-                    <div class="book">
-                        <div class="book-front" style="background: linear-gradient(135deg, #333333 0%, #000000 100%);">
-                            <span class="book-title">Miss<br>Peregrine</span>
-                            <span class="book-author">Ransom Riggs</span>
-                        </div>
-                        <div class="book-spine" style="background: #000000;"><span class="spine-text">PECULIAR</span></div>
-                    </div>
-                </div>
-        
-                <div class="book-container">
-                    <div class="book">
-                        <div class="book-front" style="background: linear-gradient(135deg, #1e90ff 0%, #00008b 100%);">
-                            <span class="book-title">Old Man &<br>The Sea</span>
-                            <span class="book-author">Ernest Hemingway</span>
-                        </div>
-                        <div class="book-spine" style="background: #00008b;"><span class="spine-text">HEMINGWAY</span></div>
-                    </div>
-                </div>
-        
-                <div class="book-container">
-                    <div class="book">
-                        <div class="book-front" style="background: linear-gradient(135deg, #4682b4 0%, #191970 100%);">
-                            <span class="book-title">Captain<br>at 15</span>
-                            <span class="book-author">Jules Verne</span>
-                        </div>
-                        <div class="book-spine" style="background: #191970;"><span class="spine-text">VERNE</span></div>
-                    </div>
-                </div>
-        
-                <div class="book-container">
-                    <div class="book">
-                        <div class="book-front" style="background: linear-gradient(135deg, #deb887 0%, #8b4513 100%); color:#000;">
-                            <span class="book-title" style="color:#2a1a08">Gulliver's<br>Travels</span>
-                            <span class="book-author" style="color:#2a1a08">Jonathan Swift</span>
-                        </div>
-                        <div class="book-spine" style="background: #8b4513;"><span class="spine-text" style="color:#000;">SWIFT</span></div>
-                    </div>
-                </div>
-        
-                <div class="book-container">
-                    <div class="book">
-                        <div class="book-front" style="background: linear-gradient(135deg, #ffa500 0%, #ff8c00 100%);">
-                            <span class="book-title">The Adv.<br>of Dunno</span>
-                            <span class="book-author">Nikolay Nosov</span>
-                        </div>
-                        <div class="book-spine" style="background: #ff8c00;"><span class="spine-text">NOSOV</span></div>
-                    </div>
-                </div>
-        
-                <div class="book-container">
-                    <div class="book">
-                        <div class="book-front" style="background: linear-gradient(135deg, #800000 0%, #300000 100%);">
-                            <span class="book-title">Animal<br>Farm</span>
-                            <span class="book-author">George Orwell</span>
-                        </div>
-                        <div class="book-spine" style="background: #300000;"><span class="spine-text">ORWELL</span></div>
-                    </div>
-                </div>
-        
-                <div class="book-container">
-                    <div class="book">
-                        <div class="book-front" style="background: linear-gradient(135deg, #d8bfd8 0%, #8b008b 100%); color:#000;">
-                            <span class="book-title" style="color:#000">Pride &<br>Prejudice</span>
-                            <span class="book-author" style="color:#333">Jane Austen</span>
-                        </div>
-                        <div class="book-spine" style="background: #8b008b;"><span class="spine-text" style="color:#000;">AUSTEN</span></div>
-                    </div>
-                </div>
-        
+                <div class="book-container"><div class="book"><div class="book-front" style="background: linear-gradient(135deg, #2d5a27 0%, #1a3c17 100%);"><span class="book-title">Chinor</span><span class="book-author">Asqad Muxtor</span></div><div class="book-spine" style="background: #1a3c17;"><span class="spine-text">CHINOR</span></div></div></div>
+                <div class="book-container"><div class="book"><div class="book-front" style="background: linear-gradient(135deg, #6b2c45 0%, #3e1222 100%);"><span class="book-title">Ufq</span><span class="book-author">Said Ahmad</span></div><div class="book-spine" style="background: #3e1222;"><span class="spine-text">UFQ</span></div></div></div>
+                <div class="book-container"><div class="book"><div class="book-front" style="background: linear-gradient(135deg, #8c6a43 0%, #5d4020 100%);"><span class="book-title">Shumbola</span><span class="book-author">G'afur G'ulom</span></div><div class="book-spine" style="background: #5d4020;"><span class="spine-text">SHUMBOLA</span></div></div></div>
+                <div class="book-container"><div class="book"><div class="book-front" style="background: linear-gradient(135deg, #556b2f 0%, #304212 100%);"><span class="book-title">Quyonlar<br>Saltanati</span><span class="book-author">X. To'xtaboyev</span></div><div class="book-spine" style="background: #304212;"><span class="spine-text">TO'XTABOYEV</span></div></div></div>
+                <div class="book-container"><div class="book"><div class="book-front" style="background: linear-gradient(135deg, #0f1c3f 0%, #050a1a 100%);"><span class="book-title">Yulduzli<br>Tunlar</span><span class="book-author">Pirimqul Qodirov</span></div><div class="book-spine" style="background: #050a1a;"><span class="spine-text">BABUR</span></div></div></div>
+                <div class="book-container"><div class="book"><div class="book-front" style="background: linear-gradient(135deg, #c79a57 0%, #8f6a35 100%); color: #000;"><span class="book-title" style="color:#2a1a08">Dunyoning<br>Ishlari</span><span class="book-author" style="color:#2a1a08">O'. Hoshimov</span></div><div class="book-spine" style="background: #8f6a35;"><span class="spine-text" style="color:#000;">HOSHIMOV</span></div></div></div>
+                <div class="book-container"><div class="book"><div class="book-front" style="background: linear-gradient(135deg, #7a1e1e 0%, #4a0d0d 100%);"><span class="book-title">Mehrobdan<br>Chayon</span><span class="book-author">Abdulla Qodiriy</span></div><div class="book-spine" style="background: #4a0d0d;"><span class="spine-text">QODIRIY</span></div></div></div>
+                <div class="book-container"><div class="book"><div class="book-front" style="background: linear-gradient(135deg, #d4a017 0%, #99700b 100%); color: #000;"><span class="book-title" style="color:#000">5 Bolali<br>Yigitcha</span><span class="book-author" style="color:#333">X. To'xtaboyev</span></div><div class="book-spine" style="background: #99700b;"><span class="spine-text" style="color:#000;">5 BOLA</span></div></div></div>
+                <div class="book-container"><div class="book"><div class="book-front" style="background: linear-gradient(135deg, #81a8b8 0%, #466978 100%);"><span class="book-title">Oq Kema</span><span class="book-author">Chingiz Aytmatov</span></div><div class="book-spine" style="background: #466978;"><span class="spine-text">AYTMATOV</span></div></div></div>
+                <div class="book-container"><div class="book"><div class="book-front" style="background: linear-gradient(135deg, #594d46 0%, #302824 100%);"><span class="book-title">Ot Kishnagan<br>Oqshom</span><span class="book-author">Tog'ay Murod</span></div><div class="book-spine" style="background: #302824;"><span class="spine-text">TOG'AY</span></div></div></div>
+                <div class="book-container"><div class="book"><div class="book-front" style="background: linear-gradient(135deg, #4b0082 0%, #2e004f 100%);"><span class="book-title">Koinot<br>Javohiri</span><span class="book-author">Sa'dulla Quronov</span></div><div class="book-spine" style="background: #2e004f;"><span class="spine-text">KOINOT</span></div></div></div>
+                <div class="book-container"><div class="book"><div class="book-front" style="background: linear-gradient(135deg, #ff4500 0%, #8b0000 100%);"><span class="book-title">Fahrenheit<br>451</span><span class="book-author">Ray Bradbury</span></div><div class="book-spine" style="background: #8b0000;"><span class="spine-text">451</span></div></div></div>
+                <div class="book-container"><div class="book"><div class="book-front" style="background: linear-gradient(135deg, #708090 0%, #2f4f4f 100%);"><span class="book-title">All Quiet on<br>Western Front</span><span class="book-author">E. M. Remarque</span></div><div class="book-spine" style="background: #2f4f4f;"><span class="spine-text">REMARQUE</span></div></div></div>
+                <div class="book-container"><div class="book"><div class="book-front" style="background: linear-gradient(135deg, #f0e68c 0%, #bdb76b 100%); color: #000;"><span class="book-title" style="color: #333;">The Little<br>Prince</span><span class="book-author" style="color: #444;">Saint-Exupéry</span></div><div class="book-spine" style="background: #bdb76b;"><span class="spine-text" style="color:#000;">PRINCE</span></div></div></div>
+                <div class="book-container"><div class="book"><div class="book-front" style="background: linear-gradient(135deg, #00ced1 0%, #008b8b 100%);"><span class="book-title">Martin<br>Eden</span><span class="book-author">Jack London</span></div><div class="book-spine" style="background: #008b8b;"><span class="spine-text">LONDON</span></div></div></div>
+                <div class="book-container"><div class="book"><div class="book-front" style="background: linear-gradient(135deg, #333333 0%, #000000 100%);"><span class="book-title">Miss<br>Peregrine</span><span class="book-author">Ransom Riggs</span></div><div class="book-spine" style="background: #000000;"><span class="spine-text">PECULIAR</span></div></div></div>
+                <div class="book-container"><div class="book"><div class="book-front" style="background: linear-gradient(135deg, #1e90ff 0%, #00008b 100%);"><span class="book-title">Old Man &<br>The Sea</span><span class="book-author">Ernest Hemingway</span></div><div class="book-spine" style="background: #00008b;"><span class="spine-text">HEMINGWAY</span></div></div></div>
+                <div class="book-container"><div class="book"><div class="book-front" style="background: linear-gradient(135deg, #4682b4 0%, #191970 100%);"><span class="book-title">Captain<br>at 15</span><span class="book-author">Jules Verne</span></div><div class="book-spine" style="background: #191970;"><span class="spine-text">VERNE</span></div></div></div>
+                <div class="book-container"><div class="book"><div class="book-front" style="background: linear-gradient(135deg, #deb887 0%, #8b4513 100%); color:#000;"><span class="book-title" style="color:#2a1a08">Gulliver's<br>Travels</span><span class="book-author" style="color:#2a1a08">Jonathan Swift</span></div><div class="book-spine" style="background: #8b4513;"><span class="spine-text" style="color:#000;">SWIFT</span></div></div></div>
+                <div class="book-container"><div class="book"><div class="book-front" style="background: linear-gradient(135deg, #ffa500 0%, #ff8c00 100%);"><span class="book-title">The Adv.<br>of Dunno</span><span class="book-author">Nikolay Nosov</span></div><div class="book-spine" style="background: #ff8c00;"><span class="spine-text">NOSOV</span></div></div></div>
+                <div class="book-container"><div class="book"><div class="book-front" style="background: linear-gradient(135deg, #800000 0%, #300000 100%);"><span class="book-title">Animal<br>Farm</span><span class="book-author">George Orwell</span></div><div class="book-spine" style="background: #300000;"><span class="spine-text">ORWELL</span></div></div></div>
+                <div class="book-container"><div class="book"><div class="book-front" style="background: linear-gradient(135deg, #d8bfd8 0%, #8b008b 100%); color:#000;"><span class="book-title" style="color:#000">Pride &<br>Prejudice</span><span class="book-author" style="color:#333">Jane Austen</span></div><div class="book-spine" style="background: #8b008b;"><span class="spine-text" style="color:#000;">AUSTEN</span></div></div></div>
             </div>
         </section>
 
@@ -721,8 +491,8 @@
             <h2 class="rise d1">Insights & Thoughts</h2>
             <div class="gold-divider rise d2"></div>
             
-            <div class="admin-controls rise d3" style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--gold-glow); padding-bottom: 20px;">
-                <p style="color: var(--text-secondary); font-family: 'Cinzel';">Archive Access</p>
+            <div class="admin-controls rise d3">
+                <p style="color: var(--text-secondary); font-family: 'Cinzel';"><i class="fas fa-lock-open" style="color:var(--gold)"></i> Admin Mode Active</p>
                 <button class="ea-btn" onclick="openEditor()">+ Draft New Insight</button>
             </div>
 
@@ -758,61 +528,88 @@
 
     </div>
 
-    <div id="blog-editor-overlay">
-        <div class="editor-container">
-            <div class="editor-header">
-                <h2 style="margin:0; font-size: 1.5rem;">New Research Entry</h2>
-                <button onclick="closeEditor()" style="background:none; border:none; color: var(--text-secondary); font-size: 2rem; cursor: pointer;">&times;</button>
+    <div id="auth-overlay" class="overlay-modal">
+        <div class="modal-container">
+            <div class="modal-header">
+                <h2 style="font-family: 'Cinzel'; margin: 0;">Access Terminal</h2>
+                <button onclick="closeAuth()" style="background:none; border:none; color: var(--text-secondary); font-size: 2rem; cursor: pointer;">&times;</button>
             </div>
+            <p style="color: var(--text-secondary); margin-bottom: 20px;">Identify yourself to access restricted protocols.</p>
+            
+            <div class="input-group">
+                <label>Email Address</label>
+                <input type="email" id="auth-email" class="auth-input" placeholder="user@example.com">
+            </div>
+            <div class="input-group">
+                <label>Password</label>
+                <input type="password" id="auth-pass" class="auth-input" placeholder="******">
+            </div>
+            <button class="ea-btn" style="width: 100%; text-align: center;" onclick="handleLogin()">AUTHENTICATE</button>
+            <p id="auth-msg" style="color: red; margin-top: 10px; font-size: 0.8rem; display: none;"></p>
+        </div>
+    </div>
 
-            <div class="editor-grid">
-                <div class="left-col">
-                    <div class="input-group" style="margin-bottom: 20px;">
-                        <label>Title of Insight</label>
-                        <input type="text" id="new-title" class="editor-input" placeholder="e.g. The Ethics of Nanotechnology">
-                    </div>
-                    <div class="input-group" style="margin-bottom: 20px;">
-                        <label>Category / Tag</label>
-                        <input type="text" id="new-category" class="editor-input" placeholder="e.g. Science, Philosophy, Code">
-                    </div>
-                    <div class="input-group">
-                        <label>External Reference Link</label>
-                        <input type="text" id="new-link" class="editor-input" placeholder="https://...">
-                    </div>
+    <div id="blog-editor-overlay" class="overlay-modal">
+        <div class="editor-container">
+            <div class="modal-container" style="max-width: 900px;">
+                <div class="modal-header">
+                    <h2 style="margin:0; font-size: 1.5rem;">New Research Entry</h2>
+                    <button onclick="closeEditor()" style="background:none; border:none; color: var(--text-secondary); font-size: 2rem; cursor: pointer;">&times;</button>
                 </div>
-                
-                <div class="right-col">
-                    <div class="input-group" style="height: 100%;">
-                        <label>Cover Visual</label>
-                        <input type="file" id="new-image" accept="image/*" style="display:none;" onchange="previewImage(this)">
-                        <div class="image-upload-box" onclick="document.getElementById('new-image').click()">
-                            <i class="fas fa-image" style="font-size: 2rem; color: var(--gold); margin-bottom: 10px;"></i>
-                            <span style="color: var(--text-secondary); font-size: 0.8rem;" id="img-preview-text">Click to Upload</span>
-                            <img id="img-preview" style="max-width: 100%; max-height: 100px; display: none; margin-top: 10px;">
+
+                <div class="editor-grid">
+                    <div class="left-col">
+                        <div class="input-group" style="margin-bottom: 20px;">
+                            <label>Title of Insight</label>
+                            <input type="text" id="new-title" class="editor-input" placeholder="e.g. The Ethics of Nanotechnology">
+                        </div>
+                        <div class="input-group" style="margin-bottom: 20px;">
+                            <label>Category / Tag</label>
+                            <input type="text" id="new-category" class="editor-input" placeholder="e.g. Science, Philosophy, Code">
+                        </div>
+                        <div class="input-group">
+                            <label>External Reference Link</label>
+                            <input type="text" id="new-link" class="editor-input" placeholder="https://...">
+                        </div>
+                    </div>
+                    
+                    <div class="right-col">
+                        <div class="input-group" style="height: 100%;">
+                            <label>Cover Visual</label>
+                            <input type="file" id="new-image" accept="image/*" style="display:none;" onchange="previewImage(this)">
+                            <div class="image-upload-box" onclick="document.getElementById('new-image').click()">
+                                <i class="fas fa-image" style="font-size: 2rem; color: var(--gold); margin-bottom: 10px;"></i>
+                                <span style="color: var(--text-secondary); font-size: 0.8rem;" id="img-preview-text">Click to Upload</span>
+                                <img id="img-preview" style="max-width: 100%; max-height: 100px; display: none; margin-top: 10px;">
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
 
-            <div class="input-group">
-                <label>Abstract / Main Content</label>
-                <textarea id="new-desc" class="editor-input editor-textarea" placeholder="Write your thoughts here..."></textarea>
-            </div>
+                <div class="input-group">
+                    <label>Abstract / Main Content</label>
+                    <textarea id="new-desc" class="editor-input editor-textarea" placeholder="Write your thoughts here..."></textarea>
+                </div>
 
-            <div style="text-align: right; margin-top: 30px;">
-                <button class="ea-btn" onclick="saveBlog()" style="padding: 15px 50px; background: var(--bg-deep);">PUBLISH TO ARCHIVE</button>
+                <div style="text-align: right; margin-top: 30px;">
+                    <button class="ea-btn" onclick="saveBlog()" style="padding: 15px 50px; background: var(--bg-deep);">PUBLISH TO ARCHIVE</button>
+                </div>
             </div>
         </div>
     </div>
 
     <script>
-        // PRELOADER
+        // --- CONSTANTS ---
+        const ADMIN_EMAIL = "elbekaliyev2010@gmail.com";
+        
+        // --- PRELOADER ---
         window.addEventListener('load', () => {
             const preloader = document.getElementById('preloader');
             setTimeout(() => { preloader.style.opacity = '0'; preloader.style.visibility = 'hidden'; }, 1500);
+            checkLoginStatus(); // Check if user is logged in on load
         });
 
-        // SCROLL PROGRESS
+        // --- SCROLL & CURSOR ---
         window.onscroll = function() {
             let winScroll = document.body.scrollTop || document.documentElement.scrollTop;
             let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
@@ -820,39 +617,72 @@
             document.getElementById("progress-bar").style.width = scrolled + "%";
         };
 
-        // --- NEW MAGNETIC CURSOR LOGIC ---
         const dot = document.getElementById('cursor-dot');
         const outline = document.getElementById('cursor-outline');
-        
         window.addEventListener('mousemove', (e) => {
-            // Dot follows instantly
-            dot.style.left = `${e.clientX}px`;
-            dot.style.top = `${e.clientY}px`;
-            // Outline follows with lag
-            outline.animate({
-                left: `${e.clientX - 25}px`,
-                top: `${e.clientY - 25}px`
-            }, { duration: 500, fill: "forwards" });
+            dot.style.left = `${e.clientX}px`; dot.style.top = `${e.clientY}px`;
+            outline.animate({ left: `${e.clientX - 25}px`, top: `${e.clientY - 25}px` }, { duration: 500, fill: "forwards" });
         });
 
-        // Interactive Element Hovering
-        const interactiveElements = document.querySelectorAll('a, button, input, textarea, .card, .image-upload-box, .book-container, .soft-card, .cert-img-container');
-        interactiveElements.forEach(el => {
-            el.addEventListener('mouseenter', () => document.body.classList.add('cursor-hover'));
-            el.addEventListener('mouseleave', () => document.body.classList.remove('cursor-hover'));
-        });
+        // --- AUTHENTICATION LOGIC ---
+        function openAuth() {
+            if(localStorage.getItem('ea_user_email')) {
+                // If already logged in, this button acts as Logout
+                if(confirm("Terminate session?")) {
+                    localStorage.removeItem('ea_user_email');
+                    window.location.reload();
+                }
+            } else {
+                document.getElementById('auth-overlay').classList.add('active');
+            }
+        }
+        function closeAuth() { document.getElementById('auth-overlay').classList.remove('active'); }
 
-        // NAVIGATION LOGIC
+        function handleLogin() {
+            const email = document.getElementById('auth-email').value;
+            const pass = document.getElementById('auth-pass').value;
+            const msg = document.getElementById('auth-msg');
+
+            if (!email || !pass) {
+                msg.style.display = "block"; msg.innerText = "Credentials required."; return;
+            }
+
+            // SIMULATED LOGIN
+            localStorage.setItem('ea_user_email', email);
+            closeAuth();
+            checkLoginStatus();
+            alert("Welcome back, User.");
+        }
+
+        function checkLoginStatus() {
+            const userEmail = localStorage.getItem('ea_user_email');
+            const authBtn = document.getElementById('auth-btn');
+            const adminPanel = document.querySelector('.admin-controls');
+
+            if (userEmail) {
+                authBtn.innerText = "LOGOUT";
+                
+                // ADMIN CHECK: Only show controls if email matches specific string
+                if (userEmail === ADMIN_EMAIL) {
+                    adminPanel.style.display = 'flex';
+                } else {
+                    adminPanel.style.display = 'none';
+                }
+            } else {
+                authBtn.innerText = "LOGIN";
+                adminPanel.style.display = 'none';
+            }
+        }
+
+        // --- NAVIGATION ---
         function showSection(id) {
             document.querySelectorAll('section').forEach(s => s.classList.remove('active'));
             document.querySelectorAll('.nav-menu a').forEach(l => l.classList.remove('active'));
             const target = document.getElementById(id);
             if(target) {
                 target.classList.add('active');
-                const elements = target.querySelectorAll('.rise');
-                elements.forEach(el => { el.style.animation = 'none'; el.offsetHeight; el.style.animation = null; });
+                target.querySelectorAll('.rise').forEach(el => { el.style.animation = 'none'; el.offsetHeight; el.style.animation = null; });
             }
-
             const link = document.getElementById('link-' + id);
             if(link) link.classList.add('active');
             window.scrollTo(0, 0);
@@ -864,31 +694,11 @@
             icon.className = document.body.classList.contains('light-mode') ? 'fas fa-sun' : 'fas fa-moon';
         }
 
-        // --- LIGHTBOX LOGIC ---
-        function openLightbox(src) {
-            const lightbox = document.getElementById('lightbox');
-            const lightboxImg = document.getElementById('lightbox-img');
-            lightboxImg.src = src;
-            lightbox.classList.add('active');
-            document.body.style.overflow = 'hidden';
-        }
-        function closeLightbox() {
-            document.getElementById('lightbox').classList.remove('active');
-            document.body.style.overflow = 'auto';
-        }
-
-        // --- PROFESSIONAL BLOG LOGIC ---
+        // --- BLOG LOGIC ---
         document.addEventListener('DOMContentLoaded', loadBlogs);
         
-        function openEditor() {
-            document.getElementById('blog-editor-overlay').classList.add('active');
-            document.body.style.overflow = 'hidden'; // Lock scroll
-        }
-
-        function closeEditor() {
-            document.getElementById('blog-editor-overlay').classList.remove('active');
-            document.body.style.overflow = 'auto'; // Unlock scroll
-        }
+        function openEditor() { document.getElementById('blog-editor-overlay').classList.add('active'); document.body.style.overflow = 'hidden'; }
+        function closeEditor() { document.getElementById('blog-editor-overlay').classList.remove('active'); document.body.style.overflow = 'auto'; }
 
         function previewImage(input) {
             if (input.files && input.files[0]) {
@@ -914,25 +724,22 @@
             const save = (img) => {
                 const newPost = { 
                     id: Date.now(), 
-                    title, 
-                    desc, 
+                    title, desc, 
                     category: category || "General", 
                     link: link || "#", 
                     img 
                 };
                 let posts = JSON.parse(localStorage.getItem('ea_portfolio_blogs')) || [];
-                posts.unshift(newPost); // Add to top
+                posts.unshift(newPost);
                 localStorage.setItem('ea_portfolio_blogs', JSON.stringify(posts));
                 
-                // Reset inputs
+                // Reset form
                 document.getElementById('new-title').value = '';
                 document.getElementById('new-desc').value = '';
-                document.getElementById('new-category').value = '';
-                document.getElementById('new-link').value = '';
                 document.getElementById('new-image').value = '';
                 document.getElementById('img-preview').style.display = 'none';
                 document.getElementById('img-preview-text').style.display = 'block';
-
+                
                 closeEditor(); loadBlogs();
             };
 
@@ -946,6 +753,7 @@
         function loadBlogs() {
             const container = document.getElementById('blog-container');
             const posts = JSON.parse(localStorage.getItem('ea_portfolio_blogs')) || [];
+            const userEmail = localStorage.getItem('ea_user_email');
             
             if (posts.length === 0) {
                 container.innerHTML = "<p style='color:var(--text-secondary); grid-column: 1/-1; text-align:center;'>Archive is currently empty.</p>";
@@ -958,13 +766,18 @@
                     ? `<div style="height: 180px; overflow: hidden;"><img src="${post.img}" style="width:100%; height:100%; object-fit:cover; transition: 0.5s;"></div>` 
                     : `<div style="height: 10px; background: var(--gold-glow);"></div>`;
 
+                // DELETE BUTTON: Only visible if Admin
+                const deleteBtn = (userEmail === ADMIN_EMAIL) 
+                    ? `<button onclick="deletePost(${post.id})" style="background:none; border:none; color:rgba(255,0,0,0.5); cursor:pointer;"><i class="fas fa-trash"></i></button>`
+                    : ``;
+
                 container.innerHTML += `
                 <div class="blog-card tilt-card">
                     ${imgHTML}
                     <div style="padding: 25px; display: flex; flex-direction: column; height: 100%;">
                         <div style="display:flex; justify-content:space-between; margin-bottom: 10px;">
                             <span style="color:var(--gold); font-size:0.75rem; font-family:'Cinzel'; text-transform:uppercase; letter-spacing:1px;">${post.category}</span>
-                            <button onclick="deletePost(${post.id})" style="background:none; border:none; color:rgba(255,0,0,0.5); cursor:pointer;"><i class="fas fa-trash"></i></button>
+                            ${deleteBtn}
                         </div>
                         <h3 style="font-size: 1.2rem; margin-bottom: 15px; font-family: 'Cinzel';">${post.title}</h3>
                         <p style="color:var(--text-secondary); font-size: 0.95rem; line-height: 1.6; margin-bottom: 20px; flex-grow: 1;">
@@ -983,7 +796,10 @@
             loadBlogs();
         }
 
-        // TYPEWRITER
+        // --- OTHER FX ---
+        function openLightbox(src) { document.getElementById('lightbox').classList.add('active'); document.getElementById('lightbox-img').src = src; }
+        function closeLightbox() { document.getElementById('lightbox').classList.remove('active'); }
+
         const texts = ["PYTHON DEVELOPER", "FUTURE NANOTECHNOLOGIST", "ROBOCONTEST SOLVER"];
         let count = 0, index = 0, currentText = "", letter = "";
         (function type() {
@@ -995,23 +811,12 @@
             else { setTimeout(type, 100); }
         })();
 
-        // TILT EFFECT
-        document.querySelectorAll('.tilt-card').forEach(card => {
-            card.addEventListener('mousemove', (e) => {
-                const rect = card.getBoundingClientRect();
-                const x = e.clientX - rect.left, y = e.clientY - rect.top;
-                card.style.transform = `perspective(1000px) rotateX(${((y - rect.height/2)/20)*-1}deg) rotateY(${(x - rect.width/2)/20}deg)`;
-            });
-            card.addEventListener('mouseleave', () => card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0)');
-        });
-
-        // PARTICLES
+        // Particles
         const canvas = document.getElementById('particle-canvas');
         const ctx = canvas.getContext('2d');
         let particlesArray;
         const initCanvas = () => { canvas.width = window.innerWidth; canvas.height = window.innerHeight; };
         initCanvas(); window.addEventListener('resize', initCanvas);
-
         class Particle {
             constructor() { this.x = Math.random()*canvas.width; this.y = Math.random()*canvas.height; this.size = Math.random()*2; this.speedX = Math.random()-0.5; this.speedY = Math.random()-0.5; }
             update() { this.x += this.speedX; this.y += this.speedY; if(this.x>canvas.width||this.x<0)this.speedX*=-1; if(this.y>canvas.height||this.y<0)this.speedY*=-1; }
