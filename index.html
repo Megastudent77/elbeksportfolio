@@ -204,6 +204,34 @@
 
         /* --- CERTIFICATES --- */
         .cert-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 20px; }
+        
+        /* New Interactive Certificate Card Design */
+        .cert-grid .card {
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease, border-color 0.4s ease;
+        }
+        .cert-grid .card:hover, 
+        .cert-grid .card:active {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 15px 30px var(--gold-glow);
+            border-color: var(--gold);
+            z-index: 10;
+        }
+        .cert-grid .card::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(5, 5, 6, 0.9), transparent);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            pointer-events: none;
+        }
+        .cert-grid .card:hover::after,
+        .cert-grid .card:active::after {
+            opacity: 1;
+        }
+
         .cert-img-container { width: 100%; height: 150px; background: #000; overflow: hidden; margin-bottom: 10px; border: 1px solid var(--gold-glow); cursor: pointer; }
         .cert-img-container img { width: 100%; height: 100%; object-fit: cover; opacity: 0.7; transition: 0.5s; }
         .cert-img-container:hover img { opacity: 1; transform: scale(1.1); }
@@ -552,7 +580,29 @@
                 </div>
             </div>
 
-            <h3 class="rise d4" style="color: var(--gold); margin: 40px 0 20px 0;">Certifications Hall</h3>
+            <div class="project-hero rise d4">
+                <div class="project-content">
+                    <p style="color: var(--gold); font-family: 'Cinzel';">02. Interactive Experience</p>
+                    <h3 style="font-size: 2rem; margin: 10px 0;">3D Interactive Viewport</h3>
+                    <p style="color: var(--text-secondary); line-height: 1.8;">
+                        An interactive 3D visualization tool and viewport environment.
+                    </p>
+                    <div style="margin-top: 20px; margin-bottom: 25px;">
+                        <span style="color:var(--gold); font-size: 0.8rem; border: 1px solid var(--gold-glow); padding: 5px 10px; margin-right: 10px;">Python</span>
+                        <span style="color:var(--gold); font-size: 0.8rem; border: 1px solid var(--gold-glow); padding: 5px 10px;">3D Rendering</span>
+                    </div>
+                    <a href="http://localhost:8501/#3-d-interactive-viewport" target="_blank" class="ea-btn">Launch Viewport <i class="fas fa-external-link-alt"></i></a>
+                </div>
+                <div class="project-visual">
+                    <div class="scan-line"></div>
+                    <div style="width: 100%; height: 100%; min-height: 250px; background: #08080a; display: flex; flex-direction: column; align-items: center; justify-content: center; border: 1px solid var(--gold-glow);">
+                        <i class="fas fa-cube" style="font-size: 4rem; color: var(--gold); opacity: 0.5; margin-bottom: 15px;"></i>
+                        <span style="color: var(--text-secondary); font-family: 'Cinzel'; letter-spacing: 2px;">3D Environment</span>
+                    </div>
+                </div>
+            </div>
+
+            <h3 class="rise d5" style="color: var(--gold); margin: 40px 0 20px 0;">Certifications Hall</h3>
             <p style="color: var(--text-secondary); font-size: 0.8rem; margin-bottom: 20px;">*Click on any certificate to enlarge</p>
             
             <div class="cert-grid">
