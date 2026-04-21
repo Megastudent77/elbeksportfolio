@@ -4,11 +4,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Elbek Aliyev | Future Scientist & Developer</title>
+    <title>Elbek Aliyev | 9th Grade Student & Python Developer</title>
     <meta name="description"
-        content="Portfolio of Elbek Aliyev — Jizzakh Presidential School Student, Python Developer & Future Nanotechnologist.">
+        content="Portfolio of Elbek Aliyev — 9th-grade student at Jizzakh Presidential School, Python Developer & algorithmic problem solver.">
     <link
-        href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css">
@@ -28,7 +28,7 @@
             --accent: #5b8fff;
             --r: 14px;
             --serif: 'DM Serif Display', Georgia, serif;
-            --sans: 'DM Sans', system-ui, sans-serif;
+            --sans: 'Inter', 'DM Sans', system-ui, sans-serif;
         }
 
         *,
@@ -252,7 +252,7 @@
 
         section {
             min-height: 100vh;
-            padding: 72px 6% 60px;
+            padding: 96px 6% 80px;
             display: none
         }
 
@@ -827,8 +827,114 @@
         .stack-g {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(155px, 1fr));
-            gap: 12px;
+            gap: 14px;
+            margin-top: 32px
+        }
+
+        /* logo-bg card (Arsenal) */
+        .soft-logo-bg {
+            width: 56px;
+            height: 56px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            transition: .3s;
+            position: relative;
+            z-index: 1
+        }
+
+        /* Currently Learning section */
+        .learning-g {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            gap: 14px;
             margin-top: 28px
+        }
+
+        .learning-c {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--r);
+            padding: 22px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            transition: .25s
+        }
+
+        .learning-c:hover {
+            border-color: var(--border-h);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 24px rgba(0,0,0,.25)
+        }
+
+        .learning-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 10px;
+            background: var(--gold-d);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            color: var(--gold);
+            flex-shrink: 0
+        }
+
+        .learning-info strong {
+            display: block;
+            font-size: .9rem;
+            font-weight: 600;
+            color: var(--text);
+            margin-bottom: 3px
+        }
+
+        .learning-info span {
+            font-size: .78rem;
+            color: var(--text2)
+        }
+
+        /* School Wins */
+        .wins-g {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 14px;
+            margin-top: 28px
+        }
+
+        .win-c {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--r);
+            padding: 22px;
+            transition: .25s
+        }
+
+        .win-c:hover {
+            border-color: var(--border-h);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 24px rgba(0,0,0,.25)
+        }
+
+        .win-badge {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            display: block
+        }
+
+        .win-c h4 {
+            font-family: var(--sans);
+            font-weight: 600;
+            font-size: .92rem;
+            color: var(--text);
+            margin-bottom: 6px
+        }
+
+        .win-c p {
+            font-size: .82rem;
+            line-height: 1.6
         }
 
         .soft-c {
@@ -1081,13 +1187,13 @@
         }
 
         .cert-head {
-            margin: 44px 0 6px
+            margin: 60px 0 6px
         }
 
         .cert-g {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
-            gap: 14px;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 12px;
             margin-top: 18px
         }
 
@@ -1107,7 +1213,7 @@
 
         .cert-img {
             position: relative;
-            height: 150px;
+            height: 130px;
             overflow: hidden;
             background: var(--bg2)
         }
@@ -1682,7 +1788,6 @@
             <li><a href="#" onclick="go('contact')" id="ln-contact">Contact</a></li>
         </ul>
         <div class="nav-r">
-            <button id="auth-btn" onclick="openAuth()">Login</button>
             <button id="theme-btn" onclick="toggleTheme()"><i class="fas fa-moon"></i></button>
             <button class="ham" id="ham" onclick="toggleMob()"><span></span><span></span><span></span></button>
         </div>
@@ -1713,8 +1818,7 @@
                         <div class="name-sweep" id="name-sweep"></div>
                     </div>
                     <div class="div"></div>
-                    <p class="home-desc">Jizzakh Presidential School student. Python developer &amp; future
-                        nanotechnologist. Merging code with atomic science to design tomorrow.</p>
+                    <p class="home-desc">9th-grade student at Jizzakh Presidential School. Focused on Python, algorithmic problem solving, and STEM research.</p>
                     <div class="home-btns">
                         <button onclick="go('portfolio')" class="btn btn-s">View Projects <i
                                 class="fas fa-arrow-right"></i></button>
@@ -1850,42 +1954,79 @@
             <h2>Digital Arsenal</h2>
             <div class="div"></div>
             <p style="max-width:500px">The creative and technical tools I use to build, design, and innovate.</p>
+
+            <!-- Currently Learning -->
+            <div style="margin-top:48px;margin-bottom:44px">
+                <div class="eyebrow">Growth Mindset</div>
+                <h2>Currently Learning</h2>
+                <div class="div"></div>
+                <p style="max-width:480px;margin-bottom:0">Always pushing further — here's what I'm actively studying right now.</p>
+                <div class="learning-g">
+                    <div class="learning-c">
+                        <div class="learning-icon"><i class="fas fa-sitemap"></i></div>
+                        <div class="learning-info">
+                            <strong>Advanced Algorithms</strong>
+                            <span>Graph theory, dynamic programming &amp; competitive problem sets on Robocontest</span>
+                        </div>
+                    </div>
+                    <div class="learning-c">
+                        <div class="learning-icon"><i class="fas fa-flask"></i></div>
+                        <div class="learning-info">
+                            <strong>Chemistry Simulations</strong>
+                            <span>Thermodynamic modelling &amp; molecular simulation concepts for STEM research</span>
+                        </div>
+                    </div>
+                    <div class="learning-c">
+                        <div class="learning-icon"><i class="fas fa-robot"></i></div>
+                        <div class="learning-info">
+                            <strong>AI &amp; Prompt Engineering</strong>
+                            <span>Building smarter tools with Gemini API and LLM integration in Python</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <div class="stack-g">
-                <div class="soft-c"><i class="devicon-python-plain"></i>
-                    <h4>Python</h4><img src="https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=400&q=80"
-                        alt="">
+                <!-- Programming -->
+                <div class="soft-c">
+                    <div class="soft-logo-bg" style="background:#3d7abf22"><i class="devicon-python-plain" style="color:#3d7abf"></i></div>
+                    <h4>Python</h4>
                 </div>
-                <div class="soft-c"><i class="devicon-photoshop-plain"></i>
-                    <h4>Photoshop</h4><img src="https://images.unsplash.com/photo-1572044162444-ad60f128bdea?w=400&q=80"
-                        alt="">
+                <div class="soft-c">
+                    <div class="soft-logo-bg" style="background:#f7971e22"><i class="fas fa-brain" style="color:#f7971e"></i></div>
+                    <h4>Algorithmic Solving</h4>
                 </div>
-                <div class="soft-c"><i class="devicon-illustrator-plain"></i>
-                    <h4>Illustrator</h4><img
-                        src="https://images.unsplash.com/photo-1626785774625-ddcddc3445e9?w=400&q=80" alt="">
+                <div class="soft-c">
+                    <div class="soft-logo-bg" style="background:#f7961e22"><i class="fas fa-cat" style="color:#e08c00"></i></div>
+                    <h4>Scratch</h4>
                 </div>
-                <div class="soft-c"><i class="fas fa-pen-nib"></i>
-                    <h4>CorelDRAW</h4><img src="https://images.unsplash.com/photo-1558655146-d09347e92766?w=400&q=80"
-                        alt="">
+                <!-- Graphic Design -->
+                <div class="soft-c">
+                    <div class="soft-logo-bg" style="background:#001d7622"><i class="devicon-photoshop-plain" style="color:#001d76"></i></div>
+                    <h4>Graphic Design</h4>
+                    <span style="font-size:.66rem;color:var(--text2)">Photoshop · Illustrator</span>
                 </div>
-                <div class="soft-c"><i class="devicon-canva-original"></i>
-                    <h4>Canva</h4><img src="https://images.unsplash.com/photo-1611532736597-de2d4265fba3?w=400&q=80"
-                        alt="">
+                <div class="soft-c">
+                    <div class="soft-logo-bg" style="background:#ff7c0022"><i class="fas fa-pen-nib" style="color:#ff7c00"></i></div>
+                    <h4>CorelDRAW</h4>
                 </div>
-                <div class="soft-c"><i class="devicon-premierepro-plain"></i>
-                    <h4>Premiere Pro</h4><img
-                        src="https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?w=400&q=80" alt="">
+                <div class="soft-c">
+                    <div class="soft-logo-bg" style="background:#00c4cc22"><i class="devicon-canva-original" style="color:#00c4cc"></i></div>
+                    <h4>Canva</h4>
                 </div>
-                <div class="soft-c"><i class="fas fa-film"></i>
-                    <h4>CapCut</h4><img src="https://images.unsplash.com/photo-1536240478700-b869070f9279?w=400&q=80"
-                        alt="">
+                <!-- Video Editing -->
+                <div class="soft-c">
+                    <div class="soft-logo-bg" style="background:#9999ff22"><i class="devicon-premierepro-plain" style="color:#9999ff"></i></div>
+                    <h4>Video Editing</h4>
+                    <span style="font-size:.66rem;color:var(--text2)">Premiere Pro · CapCut</span>
                 </div>
-                <div class="soft-c"><i class="fas fa-cat"></i>
-                    <h4>Scratch</h4><img src="https://images.unsplash.com/photo-1607799279861-4dd421887fb3?w=400&q=80"
-                        alt="">
+                <!-- Professional -->
+                <div class="soft-c">
+                    <div class="soft-logo-bg" style="background:#22c55e22"><i class="fas fa-file-alt" style="color:#22c55e"></i></div>
+                    <h4>Technical Documentation</h4>
                 </div>
-                <div class="soft-c"><i class="fab fa-windows"></i>
-                    <h4>MS Office</h4><img src="https://images.unsplash.com/photo-1531482615713-2afd69097998?w=400&q=80"
-                        alt="">
+                <div class="soft-c">
+                    <div class="soft-logo-bg" style="background:#c9a84c22"><i class="fas fa-chart-bar" style="color:var(--gold)"></i></div>
+                    <h4>Data Analysis</h4>
                 </div>
             </div>
         </section>
@@ -1897,7 +2038,7 @@
             <div class="eyebrow">Projects &amp; Achievements</div>
             <h2>Selected Work</h2>
             <div class="div"></div>
-            <div style="margin-top:28px">
+            <div style="margin-top:36px">
                 <div class="proj-c">
                     <div class="proj-info">
                         <span class="tag">01 · Major Project</span>
@@ -1906,8 +2047,12 @@
                             plans in under 3 minutes.</p>
                         <div style="display:flex;gap:7px;flex-wrap:wrap;margin-bottom:16px"><span
                                 class="tag">Python</span><span class="tag">Thermodynamic Logic</span></div>
-                        <a href="https://megastudent77.github.io/EcoUZ-GPT/" target="_blank" class="btn btn-ol"
-                            style="width:fit-content">Visit Project <i class="fas fa-external-link-alt"></i></a>
+                        <div style="display:flex;gap:8px;flex-wrap:wrap">
+                            <a href="https://megastudent77.github.io/EcoUZ-GPT/" target="_blank" class="btn btn-ol"
+                                style="width:fit-content">Visit Project <i class="fas fa-external-link-alt"></i></a>
+                            <a href="https://github.com/megastudent77/EcoUZ-GPT" target="_blank" class="btn btn-s"
+                                style="width:fit-content"><i class="fab fa-github"></i> View Code on GitHub</a>
+                        </div>
                     </div>
                     <div class="proj-vis">
                         <div class="scan"></div>
@@ -2060,6 +2205,36 @@
                     </div>
                     <div class="cert-foot">
                         <h3>Organizer · Lumora Jizzakh</h3>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ══ SCHOOL WINS ══ -->
+            <div style="margin-top:64px">
+                <div class="eyebrow">Student Life</div>
+                <h2>School Wins</h2>
+                <div class="div"></div>
+                <p style="font-size:.88rem;max-width:520px">Real achievements from real school days — the human side of a technical profile.</p>
+                <div class="wins-g">
+                    <div class="win-c">
+                        <span class="win-badge">⚡</span>
+                        <h4>Fastest Programmer — Ninja IT Contest</h4>
+                        <p>Nominated and awarded for achieving the fastest coding time in the Ninja IT competitive programming event. Speed and accuracy, not just theory.</p>
+                    </div>
+                    <div class="win-c">
+                        <span class="win-badge">🏫</span>
+                        <h4>Presidential School — STEM Track</h4>
+                        <p>Selected through a competitive national exam to study at Jizzakh Presidential School, focusing on STEM excellence and competitive programming since 2021.</p>
+                    </div>
+                    <div class="win-c">
+                        <span class="win-badge">🤖</span>
+                        <h4>Robocontest.uz Competitor</h4>
+                        <p>Active participant in Uzbekistan's leading algorithmic programming platform. Profile: <a href="https://robocontest.uz/profile/elbek007" target="_blank" style="color:var(--gold)">@elbek007</a>.</p>
+                    </div>
+                    <div class="win-c">
+                        <span class="win-badge">🏅</span>
+                        <h4>Event Organizer — Lumora Jizzakh</h4>
+                        <p>Took on a leadership role as organizer for the Lumora event in Jizzakh — demonstrating initiative beyond just coding.</p>
                     </div>
                 </div>
             </div>
@@ -2320,7 +2495,7 @@
         };
 
         // ── TYPEWRITER ──
-        var TWS = ['PYTHON DEVELOPER', 'FUTURE NANOTECHNOLOGIST', 'ROBOCONTEST SOLVER'];
+        var TWS = ['PYTHON DEVELOPER', '9TH GRADE STUDENT', 'ROBOCONTEST SOLVER', 'STEM RESEARCHER'];
         var twi = 0, twc = 0;
         (function type() {
             if (twc === TWS.length) twc = 0;
@@ -2421,7 +2596,6 @@
         }
         function checkAuth() {
             var e = localStorage.getItem('ea_e');
-            document.getElementById('auth-btn').textContent = e ? 'Logout' : 'Login';
             var ac = document.getElementById('adm-c');
             if (ac) ac.style.display = (e === ADMIN) ? 'flex' : 'none';
         }
